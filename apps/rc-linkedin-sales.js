@@ -23,10 +23,14 @@ function wk(id){var v=sig[id];if(isNaN(v))return dx.indexOf(id)>=0?0.7:0.2;var b
 var LAMBDA=0.60;
 var convBase=gv('conv');var convFromDx=!isNaN(convBase);if(!convFromDx)convBase=29;
 var LEADS=gv('leads');if(isNaN(LEADS))LEADS=0;
-var WIN=(1+0.28*wk('mensajes'))*(1+0.16*wk('perfil'))*(1+0.10*wk('ventas'));WIN=Math.min(WIN,1.6);
-var convNew=convBase+(convBase*WIN-convBase)*LAMBDA;convNew=Math.min(convNew,convBase*3,60);
+var CONV=[{id:'mensajes',lab:'Secuencias que abren conversaci\u00f3n',coef:0.28,src:'HubSpot: en fr\u00edo las redes tienen la mayor tasa de respuesta (42%)'},{id:'perfil',lab:'Perfil-vitrina',coef:0.16,src:'LinkedIn: social selling activo = +45% oportunidades'},{id:'ventas',lab:'Canal sistematizado',coef:0.10,src:'LinkedIn: 78% de social sellers superan a los que no'}];
+var convParts=CONV.map(function(l){var g=wk(l.id);return {lab:l.lab,coef:l.coef,gap:g,pts:convBase*l.coef*g*LAMBDA,src:l.src};});
+var totalLift=convParts.reduce(function(a,p){return a+p.coef*p.gap;},0)*LAMBDA;
+var convNew=Math.min(convBase*(1+totalLift),convBase*3,60);
 var VOL=LAMBDA*Math.min(0.60,wk('conexiones')*0.30+wk('contenido')*0.15+wk('audiencia')*0.10+wk('crecimiento')*0.05);
 var sugTgt=Math.round(convNew);
+var sugLeads=(LEADS>0?Math.round(LEADS*VOL):0);
+var leadNote='Sugerido por tus se\u00f1ales; ponlo en 0 para ver solo el efecto de conversi\u00f3n.';
 var convNote=convFromDx?'Sobre tu tasa de cierre y tus señales':'Estimado con benchmark (no diste tu tasa de cierre)';
 var CITES=['Los líderes de social selling generan 45% más oportunidades · LinkedIn.','Un programa de social selling activo: 51% más probable de alcanzar la cuota · LinkedIn.','78% de quienes venden con redes superan a los que no las usan · LinkedIn.','En frío las redes tienen la mayor tasa de respuesta, 42%, vs email 26% y teléfono 23% · HubSpot 2024.','87% de vendedores confirma que el social selling es efectivo · HubSpot 2024.','56% de vendedores usan redes para encontrar prospectos nuevos · HubSpot 2024.'];
 var CSS=[
@@ -92,23 +96,26 @@ function build(dest){
  var cHoy=n('div',{cls:'n',txt:'10%'}),cWin=n('div',{cls:'n',txt:'20%'}),cMo=n('div',{cls:'n',txt:'+US$0'}),cPay=n('div',{cls:'n',txt:'·'});
  app.appendChild(n('div',{cls:'rc-nums'},[
   n('div',{cls:'rc-col hoy'},[cHoy,n('div',{cls:'l',txt:'Conversión del canal hoy'})]),
-  n('div',{cls:'rc-col win'},[cWin,n('div',{cls:'l',txt:'Con la máquina'})]),
+  n('div',{cls:'rc-col win'},[cWin,n('div',{cls:'l',txt:'Con LinkedIn como canal'})]),
   n('div',{cls:'rc-col win'},[cMo,n('div',{cls:'l',txt:'Más al mes (rango)'})]),
   n('div',{cls:'rc-col win'},[cPay,n('div',{cls:'l',txt:'Recuperas la inversión en'})])
  ]));
  var take=n('div',{cls:'rc-take',txt:'Cada mes sin sistema es plata que se queda sobre la mesa.'});app.appendChild(take);
  var rev=n('input',{cls:'num',type:'tel',inputmode:'numeric',value:Q.get('rev')||'45000'});
  var convV=n('span',{cls:'v',txt:convBase+'%'}),tgtV=n('span',{cls:'v',txt:sugTgt+'%'});
- var ldin=n('input',{cls:'num',type:'tel',inputmode:'numeric',value:(LEADS>0?String(LEADS):''),placeholder:'opcional'});
+ var ldin=n('input',{cls:'num',type:'tel',inputmode:'numeric',value:(LEADS>0?String(LEADS):''),placeholder:'ej: 80'});
+ var dlin=n('input',{cls:'num',type:'tel',inputmode:'numeric',value:(sugLeads>0?String(sugLeads):'0')});
  var conv=n('input',{type:'range',min:'2',max:'80',step:'1',value:String(convBase)});
  var tgt=n('input',{type:'range',min:'2',max:'80',step:'1',value:String(sugTgt)});
- var left=n('div',{cls:'rc-card'},[n('div',{cls:'rc-ch',txt:'Números del lead'}),
-  n('div',{cls:'rc-fld'},[n('div',{cls:'rc-flab'},[n('span',{txt:'Facturación mensual (USD)'})]),rev]),
-  n('div',{cls:'rc-fld'},[n('div',{cls:'rc-flab'},[n('span',{txt:'Conexiones nuevas al mes'})]),ldin]),
+ var tick=n('div',{cls:'rc-sug'});
+ var left=n('div',{cls:'rc-card'},[n('div',{cls:'rc-ch',txt:'N\u00fameros del lead'}),
+  n('div',{cls:'rc-fld'},[n('div',{cls:'rc-flab'},[n('span',{txt:'Facturaci\u00f3n mensual (USD)'})]),rev]),
+  n('div',{cls:'rc-fld'},[n('div',{cls:'rc-flab'},[n('span',{txt:'Conexiones / leads del canal al mes'})]),ldin,tick]),
   n('div',{cls:'rc-fld'},[n('div',{cls:'rc-flab'},[n('span',{txt:'Conversión del canal hoy'}),convV]),conv]),
-  n('div',{cls:'rc-fld'},[n('div',{cls:'rc-flab'},[n('span',{txt:'Con la máquina'}),tgtV]),tgt,n('div',{cls:'rc-sug',txt:convNote})])
+  n('div',{cls:'rc-fld'},[n('div',{cls:'rc-flab'},[n('span',{txt:'Con LinkedIn como canal'}),tgtV]),tgt,n('div',{cls:'rc-sug',txt:convNote})]),
+  n('div',{cls:'rc-fld'},[n('div',{cls:'rc-flab'},[n('span',{txt:'Conexiones / leads nuevos al mes'})]),dlin,n('div',{cls:'rc-sug',txt:leadNote})])
  ]);
- var chips=n('div',{cls:'rc-chips'});
+  var chips=n('div',{cls:'rc-chips'});
  var dnote=n('div',{cls:'rc-note'});
  var pitch=n('div',{cls:'rc-pitch'});
  var coi=n('div',{cls:'rc-coi'});
@@ -116,37 +123,46 @@ function build(dest){
  var deckBtn=n('a',{cls:'rc-btn',href:DECK,target:'_blank',rel:'noopener',txt:'Abrir el deck →'});
  var right=n('div',{cls:'rc-card'},[n('div',{cls:'rc-ch',txt:'Dolores que arrojó el diagnóstico'}),chips,dnote,pitch,coi,
   n('div',{cls:'rc-roi'},[n('div',{},[yr,n('div',{cls:'lab',txt:'Más al año'})]),n('div',{},[roi,n('div',{cls:'lab',txt:'ROI año 1'})])]),
-  n('div',{cls:'rc-scn',txt:'Escenario conservador: acotado y con un 15% de colchón. El caso real puede ser mayor.'}),
+  n('div',{cls:'rc-scn',txt:'Rango conservador; el caso real puede ser mayor. La matemática está detallada abajo.'}),
   n('div',{cls:'rc-acts'},[deckBtn,n('button',{cls:'rc-btn2',type:'button',txt:'Guardar PDF'})])
  ]);
  right.querySelector('button.rc-btn2').addEventListener('click',function(){window.print();});
  app.appendChild(n('div',{cls:'rc-panel'},[left,right]));
- var src=n('div',{cls:'rc-src'});src.appendChild(n('div',{cls:'rc-ch',txt:'Por qué estos números'}));CITES.forEach(function(t){src.appendChild(n('div',{cls:'rc-cite'},[n('span',{cls:'dt',txt:'•'}),n('span',{txt:t})]));});src.appendChild(n('p',{cls:'rc-scn',style:'margin-top:12px',txt:'Estimación conservadora sobre estudios de LinkedIn y HubSpot (social selling); mide la contribución del canal, no es promesa de resultados. Se afina con tus reuniones reales.'}));app.appendChild(src);
+var cb=n('div',{cls:'rc-src'});
+ cb.appendChild(n('div',{cls:'rc-ch',txt:'Cómo se construye tu conversión con LinkedIn como canal'}));
+ cb.appendChild(n('p',{cls:'rc-scn',style:'margin:0 0 12px',html:'Partimos de tu conversión hoy (<b>'+Math.round(convBase)+'%</b>) y sumamos el efecto de cada palanca, según qué tan lejos estás de la mejor práctica (brecha) y con un factor conservador. Sugerido: <b>'+Math.round(convBase)+'% → '+sugTgt+'%</b>.'}));
+ convParts.forEach(function(p){cb.appendChild(n('div',{cls:'rc-cite'},[n('span',{cls:'dt',txt:'+'+p.pts.toFixed(1)+' pts'}),n('span',{html:'<b>'+p.lab+'</b> · brecha '+Math.round(p.gap*100)+'% · tope del estudio +'+Math.round(p.coef*100)+'% · <span style="opacity:.75">'+p.src+'</span>'})]));});
+ cb.appendChild(n('p',{cls:'rc-scn',style:'margin-top:12px',html:'“pts” = puntos porcentuales de conversión que aporta cada palanca. Ej.: pasar el CRM de casi 0 a bien usado aporta toda su brecha, con base en el +29% de Salesforce, aplicado de forma conservadora. Cada palanca se escala por tu brecha real (del diagnóstico) × factor de prudencia.'}));
+ app.appendChild(cb);
+  var src=n('div',{cls:'rc-src'});src.appendChild(n('div',{cls:'rc-ch',txt:'Por qué estos números'}));CITES.forEach(function(t){src.appendChild(n('div',{cls:'rc-cite'},[n('span',{cls:'dt',txt:'•'}),n('span',{txt:t})]));});src.appendChild(n('p',{cls:'rc-scn',style:'margin-top:12px',txt:'Estimación conservadora sobre estudios de LinkedIn y HubSpot (social selling); mide la contribución del canal, no es promesa de resultados. Se afina con tus reuniones reales.'}));app.appendChild(src);
  dest.parentNode.replaceChild(app,dest);
  dnote.textContent=dx.length?('Activados desde el diagnóstico'+(quien?' de '+quien:'')+' · conversión y pipeline sugeridos según sus señales'):'Vista de ejemplo · abre desde el resultado del diagnóstico para cargar los reales';
  function drawChips(){chips.innerHTML='';PAINS.forEach(function(p){var d=n('button',{cls:'rc-chip'+(sel[p.id]?' on':''),type:'button','aria-pressed':sel[p.id]?'true':'false',txt:p.lab});d.addEventListener('click',function(){sel[p.id]=!sel[p.id];drawChips();calc();});chips.appendChild(d);});}
  function calc(){
   var R=parseInt((rev.value||'0').replace(/\D/g,''),10)||0;
   var L=parseInt((ldin.value||'0').replace(/\D/g,''),10)||0;
-  var C=Math.max(+conv.value,1),T=Math.max(+tgt.value,1);
-  convV.textContent=C+'%';tgtV.textContent=T+'%';
-  var mo;
-  if(L>0){var cliHoy=L*C/100;var ticket=cliHoy>0?R/cliHoy:0;var cliNew=L*(1+VOL)*T/100;mo=(cliNew-cliHoy)*ticket;}
-  else{var factor=(T/C)*(1+VOL);if(!isFinite(factor)||factor<1)factor=1;factor=Math.min(factor,CAPX);mo=(R*factor-R)*DISC;}
-  if(!isFinite(mo)||mo<0)mo=0;
-  var lo=mo*0.75,hi=mo*1.20;
-  var an=mo*12,r=mo>0?an/PRICE:0;
-  var pm=mo>0?PRICE/mo:0;var payTxt=mo>0?(pm<1?'< 1 mes':(Math.ceil(pm)===1?'1 mes':Math.ceil(pm)+' meses')):'·';
-  cHoy.textContent=C+'%';cWin.textContent=T+'%';cMo.textContent='+'+fmt(lo)+' a '+fmt(hi);cPay.textContent=payTxt;
+  var dL=parseInt((dlin.value||'0').replace(/\D/g,''),10)||0;
+  var C=Math.max(+conv.value,1)/100,T=Math.max(+tgt.value,1)/100;
+  convV.textContent=Math.round(C*100)+'%';tgtV.textContent=Math.round(T*100)+'%';
+  var ticket=0,upConv=0,upPipe=0,mo=0;
+  if(L>0){var cli0=L*C;ticket=cli0>0?R/cli0:0;upConv=ticket*L*(T-C);upPipe=ticket*dL*T;mo=upConv+upPipe;}
+  else{upConv=(C>0?R*(T/C-1):0);upPipe=0;mo=upConv;}
+  if(!isFinite(mo))mo=0;var moP=Math.max(0,mo);
+  tick.textContent=(L>0&&ticket>0)?('Ticket promedio ≈ '+fmt(ticket)):(L>0?'':'Ingresa tus leads/mes para el aporte de pipeline.');
+  var lo=moP*0.80,hi=moP*1.15;
+  var an=moP*12,r=moP>0?an/PRICE:0;
+  var pm=moP>0?PRICE/moP:0;var payTxt=moP>0?(pm<1?'< 1 mes':(Math.ceil(pm)===1?'1 mes':Math.ceil(pm)+' meses')):'·';
+  cHoy.textContent=Math.round(C*100)+'%';cWin.textContent=Math.round(T*100)+'%';cMo.textContent=moP>0?('+'+fmt(lo)+' a '+fmt(hi)):'US$0';cPay.textContent=payTxt;
   yr.textContent='+'+fmt(an);roi.textContent=r.toFixed(1)+'×';
-  take.innerHTML=mo>0?('Para este lead: <b>+'+fmt(lo)+' a '+fmt(hi)+'/mes</b> (rango conservador); ~<b>+'+fmt(an)+'/año</b> en el punto medio.'):'Cada mes sin sistema es plata que se queda sobre la mesa.';
-  coi.innerHTML=mo>0?('<b>Lo que cuesta seguir igual:</b> ~<b>+'+fmt(mo)+'/mes</b> sobre la mesa. En 6 meses son <b>+'+fmt(mo*6)+'</b>; pipeline que no vuelve.'):'Ajusta los números para ver el costo de seguir igual.';
+  if(moP>0){take.innerHTML='Para '+(quien||'este lead')+': <b>+'+fmt(lo)+' a '+fmt(hi)+'/mes</b>. Por mejor conversión <b>+'+fmt(Math.max(0,upConv))+'</b>, por más pipeline <b>+'+fmt(Math.max(0,upPipe))+'</b>.';}
+  else{take.innerHTML='<b>Con estos números no hay aumento:</b> misma conversión y sin leads nuevos. Sube la conversión objetivo o agrega leads nuevos para ver el impacto.';}
+  coi.innerHTML=moP>0?('<b>Lo que cuesta seguir igual:</b> ~<b>+'+fmt(moP)+'/mes</b> sobre la mesa. En 6 meses son <b>+'+fmt(moP*6)+'</b>; pipeline que no vuelve.'):'Ajusta la conversión objetivo o los leads nuevos para ver el impacto.';
   pitch.innerHTML='';PAINS.forEach(function(p){if(sel[p.id])pitch.appendChild(n('p',{txt:p.line}));});
-  pitch.appendChild(n('p',{html:'Cerrar esto vale <span class="m">+'+fmt(an)+'/año</span>. Aun logrando la mitad, recuperas la inversión de sobra.'}));
+  if(moP>0)pitch.appendChild(n('p',{html:'Cerrar esto vale <span class="m">+'+fmt(an)+'/año</span>. Aun logrando la mitad, recuperas la inversión de sobra.'}));
  }
- [rev,ldin,conv,tgt].forEach(function(el){el.addEventListener('input',calc);});
+ [rev,ldin,dlin,conv,tgt].forEach(function(el){el.addEventListener('input',calc);});
  drawChips();calc();
- console.log('[rc] consola LinkedIn v4 montada · WIN='+WIN.toFixed(2)+' VOL='+VOL.toFixed(2));
+ console.log('[rc] consola LinkedIn v4 montada · conv '+Math.round(convBase)+'%->'+sugTgt+'% · VOL='+VOL.toFixed(2));
 }
 var tries=0;function boot(){if(document.getElementById('rc'))return;var d=mount();if(!d){if(++tries>40)return;setTimeout(boot,150);return;}build(d);}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
