@@ -24,7 +24,7 @@ var LAMBDA=0.60;
 var convBase=gv('conv');var convFromDx=!isNaN(convBase);if(!convFromDx)convBase=29;
 var LEADS=gv('leads');if(isNaN(LEADS))LEADS=0;
 var CONV=[{id:'speed',lab:'Velocidad de respuesta',coef:0.30,src:'HBR/MIT: responder en <5 min = 21\u00d7 calificar; 1\u00aa hora 7\u00d7'},{id:'coaching',lab:'Coaching con IA de llamadas',coef:0.22,src:'CSO Insights: coaching din\u00e1mico hasta +28% en cierre'},{id:'califica',lab:'Calificaci\u00f3n autom\u00e1tica',coef:0.14,src:'Salesforce: 70% del tiempo del vendedor NO es vender'},{id:'crm',lab:'CRM autom\u00e1tico',coef:0.29,src:'Salesforce: usar bien el CRM \u2248 +29% ingresos'}];
-var convParts=CONV.map(function(l){var g=wk(l.id);return {lab:l.lab,coef:l.coef,gap:g,pts:convBase*l.coef*g*LAMBDA,src:l.src};});
+var convParts=CONV.map(function(l){var g=wk(l.id);var b=BENCH[l.id];return {id:l.id,lab:l.lab,coef:l.coef,gap:g,pts:convBase*l.coef*g*LAMBDA,src:l.src,bench:(b==null?null:b),v:(b==null?null:Math.round(b*(1-g)))};});
 var totalLift=convParts.reduce(function(a,p){return a+p.coef*p.gap;},0)*LAMBDA;
 var convNew=Math.min(convBase*(1+totalLift),convBase*3,60);
 var VOL=LAMBDA*Math.min(0.60,wk('outbound')*0.35+wk('research')*0.15+wk('cerebro')*0.10);
@@ -64,6 +64,12 @@ var CSS=[
 '.rc input.num:focus,.rc input[type=range]:focus{border-color:var(--a)}',
 '.rc-chips{display:flex;flex-wrap:wrap;gap:8px}',
 '.rc-src{margin-top:16px;background:var(--s);border:1px solid var(--line);border-radius:12px;padding:20px 22px}',
+'.rc-acc{border-top:1px solid var(--line)}.rc-acc:first-of-type{border-top:none}',
+'.rc-acc-h{display:flex;align-items:center;gap:10px;padding:12px 0;cursor:pointer;font-size:14px;color:var(--ink)}',
+'.rc-acc-pts{margin-left:auto;color:var(--a);font-weight:800;font-size:13px;white-space:nowrap}',
+".rc-acc-h:after{content:'\\25B8';color:var(--faint);font-size:12px;transition:transform .15s}",
+'.rc-acc.open .rc-acc-h:after{transform:rotate(90deg)}',
+'.rc-acc-d{display:none;font-size:13px;color:var(--mut);line-height:1.6;padding:2px 0 13px}.rc-acc.open .rc-acc-d{display:block}.rc-acc-d b{color:var(--ink)}',
 '.rc-cite{display:flex;gap:10px;font-size:13px;color:var(--mut);line-height:1.5;padding:5px 0}.rc-cite .dt{color:var(--a);font-weight:800}',
 '.rc-chip{font-size:12.5px;font-weight:600;color:var(--mut);background:#000;border:1px solid var(--line);border-radius:99px;padding:7px 13px;cursor:pointer;user-select:none}',
 '.rc-chip.on{background:var(--a);color:#0A0A0A;border-color:var(--a);font-weight:700}',
@@ -131,7 +137,18 @@ function build(dest){
 var cb=n('div',{cls:'rc-src'});
  cb.appendChild(n('div',{cls:'rc-ch',txt:'Cómo se construye tu conversión con el proceso de IA'}));
  cb.appendChild(n('p',{cls:'rc-scn',style:'margin:0 0 12px',html:'Partimos de tu conversión hoy (<b>'+Math.round(convBase)+'%</b>) y sumamos el efecto de cada palanca, según qué tan lejos estás de la mejor práctica (brecha) y con un factor conservador. Sugerido: <b>'+Math.round(convBase)+'% → '+sugTgt+'%</b>.'}));
- convParts.forEach(function(p){cb.appendChild(n('div',{cls:'rc-cite'},[n('span',{cls:'dt',txt:'+'+p.pts.toFixed(1)+' pts'}),n('span',{html:'<b>'+p.lab+'</b> · brecha '+Math.round(p.gap*100)+'% · tope del estudio +'+Math.round(p.coef*100)+'% · <span style="opacity:.75">'+p.src+'</span>'})]));});
+ convParts.forEach(function(p){
+  var rel=(convBase>0?Math.round(p.pts/convBase*100):0);
+  var head=n('div',{cls:'rc-acc-h'},[n('span',{html:'<b>'+p.lab+'</b>'}),n('span',{cls:'rc-acc-pts',txt:(p.pts>=0.05?'+'+p.pts.toFixed(1)+' pts':'ya en benchmark')})]);
+  var det=n('div',{cls:'rc-acc-d'});
+  if(p.pts>=0.05){det.innerHTML='Hoy tu conversión es <b>'+Math.round(convBase)+'%</b>.'+(p.bench!=null?' En esta palanca estás ~<b>'+p.v+'%</b> y la mejor práctica (benchmark) es <b>'+p.bench+'%</b>, una brecha de <b>'+Math.round(p.gap*100)+'%</b>.':' Brecha detectada en el diagnóstico: <b>'+Math.round(p.gap*100)+'%</b>.')+' Cerrar esa brecha vale hasta <b>+'+Math.round(p.coef*100)+'%</b> de conversión, según '+p.src+'. Aplicado de forma conservadora a tu caso, suma <b>+'+p.pts.toFixed(1)+' puntos</b>: tu conversión pasaría de <b>'+Math.round(convBase)+'%</b> a <b>'+(convBase+p.pts).toFixed(1)+'%</b> — es decir <b>+'+rel+'%</b> sobre tu conversión actual solo por esta palanca.';}
+  else{det.innerHTML='Ya estás en el benchmark de esta palanca'+(p.bench!=null?(' (~<b>'+p.v+'%</b> vs benchmark <b>'+p.bench+'%</b>)'):'')+', así que no suma conversión adicional. Referencia: '+p.src+'.';}
+  var item=n('div',{cls:'rc-acc'},[head,det]);
+  head.addEventListener('click',function(){item.classList.toggle('open');});
+  head.setAttribute('role','button');head.setAttribute('tabindex','0');
+  head.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();item.classList.toggle('open');}});
+  cb.appendChild(item);
+ });
  cb.appendChild(n('p',{cls:'rc-scn',style:'margin-top:12px',html:'“pts” = puntos porcentuales de conversión que aporta cada palanca. Ej.: pasar el CRM de casi 0 a bien usado aporta toda su brecha, con base en el +29% de Salesforce, aplicado de forma conservadora. Cada palanca se escala por tu brecha real (del diagnóstico) × factor de prudencia.'}));
  app.appendChild(cb);
   var src=n('div',{cls:'rc-src'});src.appendChild(n('div',{cls:'rc-ch',txt:'Por qué estos números'}));CITES.forEach(function(t){src.appendChild(n('div',{cls:'rc-cite'},[n('span',{cls:'dt',txt:'•'}),n('span',{txt:t})]));});src.appendChild(n('p',{cls:'rc-scn',style:'margin-top:12px',txt:'Estimación conservadora sobre estudios de Salesforce, McKinsey y Harvard Business Review / MIT (speed-to-lead); no es promesa de resultados. Se afina con tus cierres reales.'}));app.appendChild(src);
