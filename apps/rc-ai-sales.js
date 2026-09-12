@@ -27,7 +27,9 @@ var CONV=[{id:'speed',lab:'Velocidad de respuesta',coef:0.30,src:'HBR/MIT: respo
 var convParts=CONV.map(function(l){var g=wk(l.id);var b=BENCH[l.id];return {id:l.id,lab:l.lab,coef:l.coef,gap:g,pts:convBase*l.coef*g*LAMBDA,src:l.src,bench:(b==null?null:b),v:(b==null?null:Math.round(b*(1-g)))};});
 var totalLift=convParts.reduce(function(a,p){return a+p.coef*p.gap;},0)*LAMBDA;
 var convNew=Math.min(convBase*(1+totalLift),convBase*3,60);
-var VOL=LAMBDA*Math.min(0.60,wk('outbound')*0.35+wk('research')*0.15+wk('cerebro')*0.10);
+var PIPE=[{id:'outbound',lab:'Outbound automatizado 1:1',coef:0.35,src:'Salesforce: automatizar libera el 70% del tiempo que no es vender'},{id:'research',lab:'Research por IA',coef:0.15,src:'Llegar con el dossier de la cuenta sube reuniones agendadas'},{id:'cerebro',lab:'Cerebro de ventas IA',coef:0.10,src:'Salesforce State of Sales 2024: 83% con IA m\u00e1s ingresos'}];
+var pipeParts=PIPE.map(function(l){var g=wk(l.id);var b=BENCH[l.id];return {id:l.id,lab:l.lab,coef:l.coef,gap:g,frac:l.coef*g*LAMBDA,src:l.src,bench:(b==null?null:b),v:(b==null?null:Math.round(b*(1-g)))};});
+var VOL=Math.min(0.60,pipeParts.reduce(function(a,p){return a+p.frac;},0));
 var sugTgt=Math.round(convNew);
 var sugLeads=(LEADS>0?Math.round(LEADS*VOL):0);
 var leadNote='Sugerido por tus se\u00f1ales; ponlo en 0 para ver solo el efecto de conversi\u00f3n.';
@@ -151,6 +153,22 @@ var cb=n('div',{cls:'rc-src'});
  });
  cb.appendChild(n('p',{cls:'rc-scn',style:'margin-top:12px',html:'“pts” = puntos porcentuales de conversión que aporta cada palanca. Ej.: pasar el CRM de casi 0 a bien usado aporta toda su brecha, con base en el +29% de Salesforce, aplicado de forma conservadora. Cada palanca se escala por tu brecha real (del diagnóstico) × factor de prudencia.'}));
  app.appendChild(cb);
+ var pb=n('div',{cls:'rc-src'});
+ pb.appendChild(n('div',{cls:'rc-ch',txt:'Cómo se construye tu pipeline (leads nuevos)'}));
+ pb.appendChild(n('p',{cls:'rc-scn',style:'margin:0 0 12px',html:(LEADS>0?('La máquina también suma leads nuevos. Sugerido: <b>+'+sugLeads+' leads/mes</b> sobre tus '+LEADS+' actuales (ajústalo arriba).'):'La máquina también suma leads nuevos. Ingresa tus leads/mes arriba para verlo en números.')}));
+ pipeParts.forEach(function(p){
+  var N=(LEADS>0?Math.round(LEADS*p.frac):0);
+  var head=n('div',{cls:'rc-acc-h'},[n('span',{html:'<b>'+p.lab+'</b>'}),n('span',{cls:'rc-acc-pts',txt:(p.frac>=0.005?(LEADS>0?'+'+N+' leads/mes':'+'+Math.round(p.frac*100)+'% pipeline'):'ya en benchmark')})]);
+  var det=n('div',{cls:'rc-acc-d'});
+  if(p.frac>=0.005){det.innerHTML=(p.bench!=null?'Hoy en esta palanca estás ~<b>'+p.v+'%</b> y la mejor práctica es <b>'+p.bench+'%</b> (brecha <b>'+Math.round(p.gap*100)+'%</b>). ':'Brecha detectada: <b>'+Math.round(p.gap*100)+'%</b>. ')+'Desarrollarla puede sumar hasta <b>+'+Math.round(p.coef*100)+'%</b> de pipeline, según '+p.src+'. '+(LEADS>0?('En tu caso aporta ~<b>+'+N+' leads/mes</b> sobre tus '+LEADS+' actuales.'):'Ingresa tus leads/mes arriba para verlo en números.');}
+  else{det.innerHTML='Ya estás en el benchmark de esta palanca, no suma pipeline adicional. Referencia: '+p.src+'.';}
+  var item=n('div',{cls:'rc-acc'},[head,det]);
+  head.addEventListener('click',function(){item.classList.toggle('open');});
+  head.setAttribute('role','button');head.setAttribute('tabindex','0');
+  head.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();item.classList.toggle('open');}});
+  pb.appendChild(item);
+ });
+ app.appendChild(pb);
   var src=n('div',{cls:'rc-src'});src.appendChild(n('div',{cls:'rc-ch',txt:'Por qué estos números'}));CITES.forEach(function(t){src.appendChild(n('div',{cls:'rc-cite'},[n('span',{cls:'dt',txt:'•'}),n('span',{txt:t})]));});src.appendChild(n('p',{cls:'rc-scn',style:'margin-top:12px',txt:'Estimación conservadora sobre estudios de Salesforce, McKinsey y Harvard Business Review / MIT (speed-to-lead); no es promesa de resultados. Se afina con tus cierres reales.'}));app.appendChild(src);
  dest.parentNode.replaceChild(app,dest);
  dnote.textContent=dx.length?('Activados desde el diagnóstico'+(quien?' de '+quien:'')+' · conversión y pipeline sugeridos según sus señales'):'Vista de ejemplo · abre desde el resultado del diagnóstico para cargar los reales';
