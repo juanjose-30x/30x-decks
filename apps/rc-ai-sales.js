@@ -67,11 +67,9 @@ var CSS=[
 '.rc-chips{display:flex;flex-wrap:wrap;gap:8px}',
 '.rc-src{margin-top:16px;background:var(--s);border:1px solid var(--line);border-radius:12px;padding:20px 22px}',
 '.rc-acc{border-top:1px solid var(--line)}.rc-acc:first-of-type{border-top:none}',
-'.rc-acc-h{display:flex;align-items:center;gap:10px;padding:12px 0;cursor:pointer;font-size:14px;color:var(--ink)}',
+'.rc-acc-h{display:flex;align-items:baseline;gap:10px;padding:11px 0 2px;font-size:14px;color:var(--ink)}',
 '.rc-acc-pts{margin-left:auto;color:var(--a);font-weight:800;font-size:13px;white-space:nowrap}',
-".rc-acc-h:after{content:'\\25B8';color:var(--faint);font-size:12px;transition:transform .15s}",
-'.rc-acc.open .rc-acc-h:after{transform:rotate(90deg)}',
-'.rc-acc-d{display:none;font-size:13px;color:var(--mut);line-height:1.6;padding:2px 0 13px}.rc-acc.open .rc-acc-d{display:block}.rc-acc-d b{color:var(--ink)}',
+'.rc-acc-d{display:block;font-size:12.5px;color:var(--mut);line-height:1.5;padding:0 0 12px}.rc-acc-d b{color:var(--ink)}',
 '.rc-cite{display:flex;gap:10px;font-size:13px;color:var(--mut);line-height:1.5;padding:5px 0}.rc-cite .dt{color:var(--a);font-weight:800}',
 '.rc-chip{font-size:12.5px;font-weight:600;color:var(--mut);background:#000;border:1px solid var(--line);border-radius:99px;padding:7px 13px;cursor:pointer;user-select:none}',
 '.rc-chip.on{background:var(--a);color:#0A0A0A;border-color:var(--a);font-weight:700}',
@@ -138,35 +136,24 @@ function build(dest){
  app.appendChild(n('div',{cls:'rc-panel'},[left,right]));
 var cb=n('div',{cls:'rc-src'});
  cb.appendChild(n('div',{cls:'rc-ch',txt:'Cómo se construye tu conversión con el proceso de IA'}));
- cb.appendChild(n('p',{cls:'rc-scn',style:'margin:0 0 12px',html:'Partimos de tu conversión hoy (<b>'+Math.round(convBase)+'%</b>) y sumamos el efecto de cada palanca, según qué tan lejos estás de la mejor práctica (brecha) y con un factor conservador. Sugerido: <b>'+Math.round(convBase)+'% → '+sugTgt+'%</b>.'}));
+ cb.appendChild(n('p',{cls:'rc-scn',style:'margin:0 0 4px',html:'Tu conversión hoy es <b>'+Math.round(convBase)+'%</b> y con el proceso de IA llegaría a <b>'+sugTgt+'%</b>. Así aporta cada palanca, según tu diagnóstico:'}));
  convParts.forEach(function(p){
-  var rel=(convBase>0?Math.round(p.pts/convBase*100):0);
-  var head=n('div',{cls:'rc-acc-h'},[n('span',{html:'<b>'+p.lab+'</b>'}),n('span',{cls:'rc-acc-pts',txt:(p.pts>=0.05?'+'+p.pts.toFixed(1)+' pts':'ya en benchmark')})]);
-  var det=n('div',{cls:'rc-acc-d'});
-  if(p.pts>=0.05){det.innerHTML='Hoy tu conversión es <b>'+Math.round(convBase)+'%</b>.'+(p.bench!=null?' En esta palanca estás ~<b>'+p.v+'%</b> y la mejor práctica (benchmark) es <b>'+p.bench+'%</b>, una brecha de <b>'+Math.round(p.gap*100)+'%</b>.':' Brecha detectada en el diagnóstico: <b>'+Math.round(p.gap*100)+'%</b>.')+' Cerrar esa brecha vale hasta <b>+'+Math.round(p.coef*100)+'%</b> de conversión, según '+p.src+'. Aplicado de forma conservadora a tu caso, suma <b>+'+p.pts.toFixed(1)+' puntos</b>: tu conversión pasaría de <b>'+Math.round(convBase)+'%</b> a <b>'+(convBase+p.pts).toFixed(1)+'%</b> — es decir <b>+'+rel+'%</b> sobre tu conversión actual solo por esta palanca.';}
-  else{det.innerHTML='Ya estás en el benchmark de esta palanca'+(p.bench!=null?(' (~<b>'+p.v+'%</b> vs benchmark <b>'+p.bench+'%</b>)'):'')+', así que no suma conversión adicional. Referencia: '+p.src+'.';}
-  var item=n('div',{cls:'rc-acc'},[head,det]);
-  head.addEventListener('click',function(){item.classList.toggle('open');});
-  head.setAttribute('role','button');head.setAttribute('tabindex','0');
-  head.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();item.classList.toggle('open');}});
-  cb.appendChild(item);
+  var det;
+  if(p.pts>=0.05){det=(p.bench!=null?'Hoy la tienes en ~<b>'+p.v+'%</b> y lo ideal es <b>'+p.bench+'%</b>. ':'Hoy tu mensaje no es consistente. ')+'Llevándola a punto, tu conversión pasa de <b>'+Math.round(convBase)+'%</b> a <b>'+(convBase+p.pts).toFixed(1)+'%</b>. Base: '+p.src+'.';}
+  else{det='Ya la tienes en el ideal, no suma más. '+p.src+'.';}
+  cb.appendChild(n('div',{cls:'rc-acc'},[n('div',{cls:'rc-acc-h'},[n('span',{html:'<b>'+p.lab+'</b>'}),n('span',{cls:'rc-acc-pts',txt:(p.pts>=0.05?'+'+p.pts.toFixed(1)+' pts':'ya en punto')})]),n('div',{cls:'rc-acc-d',html:det})]));
  });
- cb.appendChild(n('p',{cls:'rc-scn',style:'margin-top:12px',html:'“pts” = puntos porcentuales de conversión que aporta cada palanca. Ej.: pasar el CRM de casi 0 a bien usado aporta toda su brecha, con base en el +29% de Salesforce, aplicado de forma conservadora. Cada palanca se escala por tu brecha real (del diagnóstico) × factor de prudencia.'}));
+ cb.appendChild(n('p',{cls:'rc-scn',style:'margin-top:10px',html:'Total: <b>'+Math.round(convBase)+'% → '+sugTgt+'%</b>. Cada palanca se aplica de forma conservadora (no al 100% del estudio).'}));
  app.appendChild(cb);
  var pb=n('div',{cls:'rc-src'});
  pb.appendChild(n('div',{cls:'rc-ch',txt:'Cómo se construye tu pipeline (leads nuevos)'}));
- pb.appendChild(n('p',{cls:'rc-scn',style:'margin:0 0 12px',html:(LEADS>0?('La máquina también suma leads nuevos. Sugerido: <b>+'+sugLeads+' leads/mes</b> sobre tus '+LEADS+' actuales (ajústalo arriba).'):'La máquina también suma leads nuevos. Ingresa tus leads/mes arriba para verlo en números.')}));
+ pb.appendChild(n('p',{cls:'rc-scn',style:'margin:0 0 4px',html:(LEADS>0?('Además de cerrar mejor, la máquina te trae más leads: <b>+'+sugLeads+'/mes</b> sobre tus '+LEADS+' actuales. Así aporta cada palanca:'):'Además de cerrar mejor, la máquina te trae más leads. Ingresa tus leads/mes arriba para verlo en números.')}));
  pipeParts.forEach(function(p){
   var N=(LEADS>0?Math.round(LEADS*p.frac):0);
-  var head=n('div',{cls:'rc-acc-h'},[n('span',{html:'<b>'+p.lab+'</b>'}),n('span',{cls:'rc-acc-pts',txt:(p.frac>=0.005?(LEADS>0?'+'+N+' leads/mes':'+'+Math.round(p.frac*100)+'% pipeline'):'ya en benchmark')})]);
-  var det=n('div',{cls:'rc-acc-d'});
-  if(p.frac>=0.005){det.innerHTML=(p.bench!=null?'Hoy en esta palanca estás ~<b>'+p.v+'%</b> y la mejor práctica es <b>'+p.bench+'%</b> (brecha <b>'+Math.round(p.gap*100)+'%</b>). ':'Brecha detectada: <b>'+Math.round(p.gap*100)+'%</b>. ')+'Desarrollarla puede sumar hasta <b>+'+Math.round(p.coef*100)+'%</b> de pipeline, según '+p.src+'. '+(LEADS>0?('En tu caso aporta ~<b>+'+N+' leads/mes</b> sobre tus '+LEADS+' actuales.'):'Ingresa tus leads/mes arriba para verlo en números.');}
-  else{det.innerHTML='Ya estás en el benchmark de esta palanca, no suma pipeline adicional. Referencia: '+p.src+'.';}
-  var item=n('div',{cls:'rc-acc'},[head,det]);
-  head.addEventListener('click',function(){item.classList.toggle('open');});
-  head.setAttribute('role','button');head.setAttribute('tabindex','0');
-  head.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();item.classList.toggle('open');}});
-  pb.appendChild(item);
+  var det;
+  if(p.frac>=0.005){det=(p.bench!=null?'Hoy la tienes en ~<b>'+p.v+'%</b> y lo ideal es <b>'+p.bench+'%</b>. ':'')+'Desarrollarla '+(LEADS>0?('te suma ~<b>+'+N+' leads/mes</b>'):('sube tu pipeline hasta +'+Math.round(p.coef*100)+'%'))+'. Base: '+p.src+'.';}
+  else{det='Ya la tienes en el ideal, no suma más. '+p.src+'.';}
+  pb.appendChild(n('div',{cls:'rc-acc'},[n('div',{cls:'rc-acc-h'},[n('span',{html:'<b>'+p.lab+'</b>'}),n('span',{cls:'rc-acc-pts',txt:(p.frac>=0.005?(LEADS>0?'+'+N+' leads/mes':'+'+Math.round(p.frac*100)+'%'):'ya en punto')})]),n('div',{cls:'rc-acc-d',html:det})]));
  });
  app.appendChild(pb);
   var src=n('div',{cls:'rc-src'});src.appendChild(n('div',{cls:'rc-ch',txt:'Por qué estos números'}));CITES.forEach(function(t){src.appendChild(n('div',{cls:'rc-cite'},[n('span',{cls:'dt',txt:'•'}),n('span',{txt:t})]));});src.appendChild(n('p',{cls:'rc-scn',style:'margin-top:12px',txt:'Estimación conservadora sobre estudios de Salesforce, McKinsey y Harvard Business Review / MIT (speed-to-lead); no es promesa de resultados. Se afina con tus cierres reales.'}));app.appendChild(src);
