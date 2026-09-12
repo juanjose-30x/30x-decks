@@ -143,7 +143,7 @@ var cb=n('div',{cls:'rc-src'});
  convParts.forEach(function(p){
   var det;
   if(p.pts>=0.05){var from=acc;acc=acc+p.pts;
-   det=(p.bench!=null?'Hoy está en ~<b>'+p.v+'%</b> de madurez (ideal '+p.bench+'%). ':'Hoy tu mensaje no es consistente. ')+'Suma <b>+'+p.pts.toFixed(1)+' pts</b> → acumulas de <b>'+from.toFixed(1)+'%</b> a <b>'+acc.toFixed(1)+'%</b>. Base: '+p.src+'.';}
+   det=(p.bench!=null?'Hoy ~<b>'+p.v+'%</b> de madurez (ideal '+p.bench+'%). ':'Hoy tu mensaje no es consistente. ')+'El estudio ve hasta <b>+'+Math.round(p.coef*100)+'% relativo</b> (no puntos): sobre tu '+Math.round(convBase)+'% eso es <b>+'+(convBase*p.coef).toFixed(1)+' pts</b> de techo. Por tu brecha ('+Math.round(p.gap*100)+'%) y un margen conservador, cuenta <b>+'+p.pts.toFixed(1)+' pts</b> → acumulas de <b>'+from.toFixed(1)+'%</b> a <b>'+acc.toFixed(1)+'%</b>. Base: '+p.src+'.';}
   else{det='Ya está en el ideal, no suma. '+p.src+'.';}
   cb.appendChild(n('div',{cls:'rc-acc'},[n('div',{cls:'rc-acc-h'},[n('span',{html:'<b>'+p.lab+'</b>'}),n('span',{cls:'rc-acc-pts',txt:(p.pts>=0.05?'+'+p.pts.toFixed(1)+' pts':'ya en punto')})]),n('div',{cls:'rc-acc-d',html:det})]));
  });
@@ -155,7 +155,7 @@ var cb=n('div',{cls:'rc-src'});
  pipeParts.forEach(function(p){
   var N=(LEADS>0?Math.round(LEADS*p.frac):0);
   var det;
-  if(p.frac>=0.005){det=(p.bench!=null?'Hoy la tienes en ~<b>'+p.v+'%</b> y lo ideal es <b>'+p.bench+'%</b>. ':'')+'Desarrollarla '+(LEADS>0?('te suma ~<b>+'+N+' leads/mes</b>'):('sube tu pipeline hasta +'+Math.round(p.coef*100)+'%'))+'. Base: '+p.src+'.';}
+  if(p.frac>=0.005){det=(p.bench!=null?'Hoy ~<b>'+p.v+'%</b> de madurez (ideal '+p.bench+'%). ':'')+(LEADS>0?('El estudio ve hasta <b>+'+Math.round(p.coef*100)+'% de pipeline</b>: sobre tus '+LEADS+' leads serían +'+Math.round(LEADS*p.coef)+' de techo. Por tu brecha y margen conservador, suma <b>+'+N+' leads/mes</b>'):('Desarrollarla sube tu pipeline hasta +'+Math.round(p.coef*100)+'%'))+'. Base: '+p.src+'.';}
   else{det='Ya la tienes en el ideal, no suma más. '+p.src+'.';}
   pb.appendChild(n('div',{cls:'rc-acc'},[n('div',{cls:'rc-acc-h'},[n('span',{html:'<b>'+p.lab+'</b>'}),n('span',{cls:'rc-acc-pts',txt:(p.frac>=0.005?(LEADS>0?'+'+N+' leads/mes':'+'+Math.round(p.frac*100)+'%'):'ya en punto')})]),n('div',{cls:'rc-acc-d',html:det})]));
  });
