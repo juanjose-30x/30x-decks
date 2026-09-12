@@ -136,14 +136,16 @@ function build(dest){
  app.appendChild(n('div',{cls:'rc-panel'},[left,right]));
 var cb=n('div',{cls:'rc-src'});
  cb.appendChild(n('div',{cls:'rc-ch',txt:'Cómo se construye tu conversión con el proceso de IA'}));
- cb.appendChild(n('p',{cls:'rc-scn',style:'margin:0 0 4px',html:'Tu conversión hoy es <b>'+Math.round(convBase)+'%</b> y con el proceso de IA llegaría a <b>'+sugTgt+'%</b>. Así aporta cada palanca, según tu diagnóstico:'}));
+ cb.appendChild(n('p',{cls:'rc-scn',style:'margin:0 0 4px',html:'Arrancas en <b>'+Math.round(convBase)+'%</b>. Cada palanca que tu diagnóstico marca floja suma unos puntos, y se van <b>acumulando</b> hasta <b>'+sugTgt+'%</b>:'}));
+ var acc=convBase;
  convParts.forEach(function(p){
   var det;
-  if(p.pts>=0.05){det=(p.bench!=null?'Hoy la tienes en ~<b>'+p.v+'%</b> y lo ideal es <b>'+p.bench+'%</b>. ':'Hoy tu mensaje no es consistente. ')+'Llevándola a punto, tu conversión pasa de <b>'+Math.round(convBase)+'%</b> a <b>'+(convBase+p.pts).toFixed(1)+'%</b>. Base: '+p.src+'.';}
-  else{det='Ya la tienes en el ideal, no suma más. '+p.src+'.';}
+  if(p.pts>=0.05){var from=acc;acc=acc+p.pts;
+   det=(p.bench!=null?'Hoy está en ~<b>'+p.v+'%</b> de madurez (ideal '+p.bench+'%). ':'Hoy tu mensaje no es consistente. ')+'Suma <b>+'+p.pts.toFixed(1)+' pts</b> → acumulas de <b>'+from.toFixed(1)+'%</b> a <b>'+acc.toFixed(1)+'%</b>. Base: '+p.src+'.';}
+  else{det='Ya está en el ideal, no suma. '+p.src+'.';}
   cb.appendChild(n('div',{cls:'rc-acc'},[n('div',{cls:'rc-acc-h'},[n('span',{html:'<b>'+p.lab+'</b>'}),n('span',{cls:'rc-acc-pts',txt:(p.pts>=0.05?'+'+p.pts.toFixed(1)+' pts':'ya en punto')})]),n('div',{cls:'rc-acc-d',html:det})]));
  });
- cb.appendChild(n('p',{cls:'rc-scn',style:'margin-top:10px',html:'Total: <b>'+Math.round(convBase)+'% → '+sugTgt+'%</b>. Cada palanca se aplica de forma conservadora (no al 100% del estudio).'}));
+ cb.appendChild(n('p',{cls:'rc-scn',style:'margin-top:10px',html:'<b>Total: '+Math.round(convBase)+'% → '+sugTgt+'%.</b> No usamos el máximo de cada estudio: tomamos solo la parte que te falta (tu brecha) y con margen de prudencia.'}));
  app.appendChild(cb);
  var pb=n('div',{cls:'rc-src'});
  pb.appendChild(n('div',{cls:'rc-ch',txt:'Cómo se construye tu pipeline (leads nuevos)'}));
