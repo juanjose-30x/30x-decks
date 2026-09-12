@@ -24,12 +24,11 @@ var LAMBDA=0.60;
 var convBase=gv('conv');var convFromDx=!isNaN(convBase);if(!convFromDx)convBase=29;
 var LEADS=gv('leads');if(isNaN(LEADS))LEADS=0;
 var CONV=[{id:'speed',lab:'Velocidad de respuesta',coef:0.30,src:'HBR/MIT: responder en <5 min = 21\u00d7 calificar; 1\u00aa hora 7\u00d7'},{id:'coaching',lab:'Coaching con IA de llamadas',coef:0.22,src:'CSO Insights: coaching din\u00e1mico hasta +28% en cierre'},{id:'califica',lab:'Calificaci\u00f3n autom\u00e1tica',coef:0.14,src:'Salesforce: 70% del tiempo del vendedor NO es vender'},{id:'crm',lab:'CRM autom\u00e1tico',coef:0.29,src:'Salesforce: usar bien el CRM \u2248 +29% ingresos'}];
-var convParts=CONV.map(function(l){var g=wk(l.id);var b=BENCH[l.id];return {id:l.id,lab:l.lab,coef:l.coef,gap:g,pts:convBase*l.coef*g*LAMBDA,src:l.src,bench:(b==null?null:b),v:(b==null?null:Math.round(b*(1-g)))};});
-var totalLift=convParts.reduce(function(a,p){return a+p.coef*p.gap;},0)*LAMBDA;
-var convNew=Math.min(convBase*(1+totalLift),convBase*3,60);
+var convParts=CONV.map(function(l){var g=wk(l.id);var b=BENCH[l.id];var v=Math.round(b*(1-g));var bf=Math.max(0,Math.min(1,(b-v)/100));return {id:l.id,lab:l.lab,coef:l.coef,gap:g,bf:bf,pts:convBase*l.coef*bf,src:l.src,bench:b,v:v};});
+var convNew=Math.min(convBase+convParts.reduce(function(a,p){return a+p.pts;},0),convBase*3,60);
 var PIPE=[{id:'outbound',lab:'Outbound automatizado 1:1',coef:0.35,src:'Salesforce: automatizar libera el 70% del tiempo que no es vender'},{id:'research',lab:'Research por IA',coef:0.15,src:'Llegar con el dossier de la cuenta sube reuniones agendadas'},{id:'cerebro',lab:'Cerebro de ventas IA',coef:0.10,src:'Salesforce State of Sales 2024: 83% con IA m\u00e1s ingresos'}];
-var pipeParts=PIPE.map(function(l){var g=wk(l.id);var b=BENCH[l.id];return {id:l.id,lab:l.lab,coef:l.coef,gap:g,frac:l.coef*g*LAMBDA,src:l.src,bench:(b==null?null:b),v:(b==null?null:Math.round(b*(1-g)))};});
-var VOL=Math.min(0.60,pipeParts.reduce(function(a,p){return a+p.frac;},0));
+var pipeParts=PIPE.map(function(l){var g=wk(l.id);var b=BENCH[l.id];var v=Math.round(b*(1-g));var bf=Math.max(0,Math.min(1,(b-v)/100));return {id:l.id,lab:l.lab,coef:l.coef,gap:g,bf:bf,frac:l.coef*bf,src:l.src,bench:b,v:v};});
+var VOL=Math.min(1,pipeParts.reduce(function(a,p){return a+p.frac;},0));
 var sugTgt=Math.round(convNew);
 var sugLeads=(LEADS>0?Math.round(LEADS*VOL):0);
 var leadNote='Sugerido por tus se\u00f1ales; ponlo en 0 para ver solo el efecto de conversi\u00f3n.';
@@ -141,11 +140,11 @@ var cb=n('div',{cls:'rc-src'});
  convParts.forEach(function(p){
   var det;
   if(p.pts>=0.05){var from=acc;acc=acc+p.pts;
-   det=(p.bench!=null?'Hoy ~<b>'+p.v+'%</b> de madurez (ideal '+p.bench+'%). ':'Hoy tu mensaje no es consistente. ')+'El estudio ve hasta <b>+'+Math.round(p.coef*100)+'% relativo</b> (no puntos): sobre tu '+Math.round(convBase)+'% eso es <b>+'+(convBase*p.coef).toFixed(1)+' pts</b> de techo. Por tu brecha ('+Math.round(p.gap*100)+'%) y un margen conservador, cuenta <b>+'+p.pts.toFixed(1)+' pts</b> → acumulas de <b>'+from.toFixed(1)+'%</b> a <b>'+acc.toFixed(1)+'%</b>. Base: '+p.src+'.';}
+   det='Hoy ~<b>'+p.v+'%</b> de madurez → con la máquina, el ideal <b>'+p.bench+'%</b>. El estudio ve hasta <b>+'+Math.round(p.coef*100)+'%</b> relativo = <b>+'+(convBase*p.coef).toFixed(1)+' pts</b> de techo sobre tu '+Math.round(convBase)+'%. Cierras el <b>'+Math.round(p.bf*100)+'%</b> de la brecha → aplicas <b>+'+p.pts.toFixed(1)+' pts</b>. Acumulas de <b>'+from.toFixed(1)+'%</b> a <b>'+acc.toFixed(1)+'%</b>. Base: '+p.src+'.';}
   else{det='Ya está en el ideal, no suma. '+p.src+'.';}
   cb.appendChild(n('div',{cls:'rc-acc'},[n('div',{cls:'rc-acc-h'},[n('span',{html:'<b>'+p.lab+'</b>'}),n('span',{cls:'rc-acc-pts',txt:(p.pts>=0.05?'+'+p.pts.toFixed(1)+' pts':'ya en punto')})]),n('div',{cls:'rc-acc-d',html:det})]));
  });
- cb.appendChild(n('p',{cls:'rc-scn',style:'margin-top:10px',html:'<b>Total: '+Math.round(convBase)+'% → '+sugTgt+'%.</b> No usamos el máximo de cada estudio: tomamos solo la parte que te falta (tu brecha) y con margen de prudencia.'}));
+ cb.appendChild(n('p',{cls:'rc-scn',style:'margin-top:10px',html:'<b>Total: '+Math.round(convBase)+'% → '+sugTgt+'%.</b> A cada estudio le aplicamos el % de brecha que cierras (de tu nivel actual al ideal), sin recortes extra.'}));
  app.appendChild(cb);
  var pb=n('div',{cls:'rc-src'});
  pb.appendChild(n('div',{cls:'rc-ch',txt:'Cómo se construye tu pipeline (leads nuevos)'}));
@@ -153,7 +152,7 @@ var cb=n('div',{cls:'rc-src'});
  pipeParts.forEach(function(p){
   var N=(LEADS>0?Math.round(LEADS*p.frac):0);
   var det;
-  if(p.frac>=0.005){det=(p.bench!=null?'Hoy ~<b>'+p.v+'%</b> de madurez (ideal '+p.bench+'%). ':'')+(LEADS>0?('El estudio ve hasta <b>+'+Math.round(p.coef*100)+'% de pipeline</b>: sobre tus '+LEADS+' leads serían +'+Math.round(LEADS*p.coef)+' de techo. Por tu brecha y margen conservador, suma <b>+'+N+' leads/mes</b>'):('Desarrollarla sube tu pipeline hasta +'+Math.round(p.coef*100)+'%'))+'. Base: '+p.src+'.';}
+  if(p.frac>=0.005){det='Hoy ~<b>'+p.v+'%</b> de madurez → ideal <b>'+p.bench+'%</b>. '+(LEADS>0?('El estudio ve hasta <b>+'+Math.round(p.coef*100)+'%</b> de pipeline = +'+Math.round(LEADS*p.coef)+' leads de techo sobre tus '+LEADS+'. Cierras el <b>'+Math.round(p.bf*100)+'%</b> de la brecha → <b>+'+N+' leads/mes</b>'):('Desarrollarla sube tu pipeline hasta +'+Math.round(p.coef*100)+'%'))+'. Base: '+p.src+'.';}
   else{det='Ya la tienes en el ideal, no suma más. '+p.src+'.';}
   pb.appendChild(n('div',{cls:'rc-acc'},[n('div',{cls:'rc-acc-h'},[n('span',{html:'<b>'+p.lab+'</b>'}),n('span',{cls:'rc-acc-pts',txt:(p.frac>=0.005?(LEADS>0?'+'+N+' leads/mes':'+'+Math.round(p.frac*100)+'%'):'ya en punto')})]),n('div',{cls:'rc-acc-d',html:det})]));
  });
