@@ -38,6 +38,8 @@ function form(host){
   if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v.email)){err.textContent='Revisa tu correo.';return;}
   if(v.whatsapp.replace(/\D/g,'').length<8){err.textContent='Revisa tu WhatsApp (con indicativo de país).';return;}
   b.disabled=true;b.textContent='Abriendo la guía…';
+  var wa='https://wa.me/12064265579?text='+encodeURIComponent('Hola Emma, soy '+v.nombre+'. Acabo de descargar la guía de Claude para ventas de @vende30x. ¿Me ayudas a montarlo en mi equipo?');
+  var win=null;try{win=window.open(wa,'_blank','noopener');}catch(e){}
   var p={programa:'guia_claude',origen:'guia-claude-ventas',ruta:'ig_vende30x',nombre:v.nombre,email:v.email,whatsapp:v.whatsapp,empresa:v.empresa,rol:v.rol,dirige_equipo:v.equipo,senales:{crm:v.crm,tamano_equipo:v.equipo,programa_interes:'ai_sales',utm:qs(),pagina:location.href},enviado_en:new Date().toISOString()};
   try{fetch(ENDPOINT,{method:'POST',keepalive:true,mode:'cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(p)}).catch(function(){});}catch(e){}
   try{var RO={'Dueño o CEO':'rol1','Director o gerente comercial':'rol2','Líder de un equipo de ventas':'rol3','Vendedor':'rol4','Otro':'rol5'},EQ={'Solo yo':'eq1','2 a 5':'eq2','6 a 15':'eq3','16 a 50':'eq4','Más de 50':'eq5'},CR={'HubSpot':'crm1','Salesforce':'crm2','Pipedrive':'crm3','Otro CRM':'crm4','No uso CRM':'crm5'};var h=qs();h.origen='guia-claude-ventas';h.pagina=location.href.slice(0,500);
@@ -45,7 +47,7 @@ function form(host){
    fetch(F30X,{method:'POST',keepalive:true,mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(fp)}).catch(function(){});}catch(e){}
   try{if(window.fbq){fbq('track','Lead',{content_name:'guia-claude-ventas'});fbq('track','CompleteRegistration',{content_name:'guia-claude-ventas'});fbq('trackCustom','Registro',{content_name:'guia-claude-ventas',rol:v.rol,equipo:v.equipo});}}catch(e){}
   try{if(window.gtag)gtag('event','generate_lead',{form:'guia-claude-ventas'});}catch(e){}
-  host.innerHTML='';host.appendChild(n('div',{cls:'gok'},'¡Listo, '+v.nombre.split(' ')[0]+'! La guía está abierta abajo.'));
+  host.innerHTML='';var ok=n('div',{cls:'gok'});ok.appendChild(document.createTextNode('¡Listo, '+v.nombre.split(' ')[0]+'! La guía está abierta abajo. Emma, nuestra agente de IA, te espera en WhatsApp para ayudarte a montarlo. '));var ea=n('a',{href:wa,target:'_blank',rel:'noopener',style:'display:inline-block;margin-top:10px;background:#000;color:#E9FF7B;padding:10px 16px;border-radius:999px;font-weight:800;text-decoration:none'},'Escribirle a Emma por WhatsApp →');ok.appendChild(n('br'));ok.appendChild(ea);host.appendChild(ok);
   setTimeout(function(){unlock(true);},400);
  });
 }
