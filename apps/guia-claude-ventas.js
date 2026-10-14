@@ -10,13 +10,13 @@ var _okp=_sp&&_sp.get('ok')==='1';var _nm=(_sp&&_sp.get('n'))||'';
 var _un=false;try{_un=localStorage.getItem(KEY)==='1'}catch(e){}
 if(_okp){try{localStorage.setItem(KEY,'1')}catch(e){}_un=true;}
 if(!_un&&!/[?&](preview|noredirect)=/.test(location.search)){var _q=location.search||'';location.replace(FORMURL+_q);return;}
-function emmaBar(){var nm=(_nm.split(' ')[0]||'').slice(0,40);var wa='https://wa.me/'+EMMA+'?text='+encodeURIComponent('Hola'+(nm?', soy '+nm:'')+'. Acabo de desbloquear la guía de Claude para ventas de @vende30x y la dejo guardada aquí para no perderla: https://magnet.30x.com/guia-claude-ventas?ok=1');
+function emmaBar(){var nm=(_nm.split(' ')[0]||'').slice(0,40);var wa='https://wa.me/'+EMMA+'?text='+encodeURIComponent('Hola Emma'+(nm?', soy '+nm:'')+'. Quiero probar el agente. Te dejo el link de la guía de Claude para ventas de @vende30x para tenerlo guardado: https://magnet.30x.com/guia-claude-ventas?ok=1');
  var o=n('div',{id:'gc-emma',style:'position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.86);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:20px;font-family:Inter,system-ui,sans-serif'});
  var c=n('div',{style:'max-width:440px;width:100%;background:#0f0f0f;border:1px solid rgba(255,255,255,.14);border-radius:24px;padding:28px;color:#fff;text-align:center'});
- c.appendChild(n('div',{style:'font:600 12px Inter;letter-spacing:.24em;color:#E9FF7B;text-transform:uppercase'},'Guárdala en tu WhatsApp'));
+ c.appendChild(n('div',{style:'font:600 12px Inter;letter-spacing:.24em;color:#E9FF7B;text-transform:uppercase'},'Prueba el agente'));
  c.appendChild(n('h2',{style:'font:800 28px/1.1 Inter;letter-spacing:-.03em;margin:12px 0 10px'},(nm?'¡Listo, '+nm+'! ':'¡Listo! ')+'Tu guía está desbloqueada.'));
- c.appendChild(n('p',{style:'font:400 16px/1.45 Inter;color:rgba(255,255,255,.75);margin:0 0 20px'},'Te abrimos un chat con 30X con el link de la guía ya escrito. Envíalo y la tienes siempre a mano en tu WhatsApp, aunque cierres esta página.'));
- var a=n('a',{href:wa,target:'_blank',rel:'noopener',style:'display:block;background:#E9FF7B;color:#000;font:800 17px Inter;padding:16px;border-radius:999px;text-decoration:none'},'Guardar la guía en mi WhatsApp →');c.appendChild(a);
+ c.appendChild(n('p',{style:'font:400 16px/1.45 Inter;color:rgba(255,255,255,.75);margin:0 0 20px'},'Escríbele a Emma, la agente de IA que atiende nuestros leads en 21 segundos. El mensaje ya lleva el link de tu guía, así queda guardado en tu WhatsApp.'));
+ var a=n('a',{href:wa,target:'_blank',rel:'noopener',style:'display:block;background:#E9FF7B;color:#000;font:800 17px Inter;padding:16px;border-radius:999px;text-decoration:none'},'Probar a Emma en WhatsApp →');c.appendChild(a);
  var x=n('button',{type:'button',style:'margin-top:14px;background:none;border:0;color:rgba(255,255,255,.6);font:500 14px Inter;text-decoration:underline;cursor:pointer'},'Ver la guía primero');c.appendChild(x);
  o.appendChild(c);document.body.appendChild(o);
  function close(){o.remove();var t=document.getElementById('antes');if(t)t.scrollIntoView({behavior:'smooth'});}
@@ -56,7 +56,7 @@ function form(host){
   if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v.email)){err.textContent='Revisa tu correo.';return;}
   if(v.whatsapp.replace(/\D/g,'').length<8){err.textContent='Revisa tu WhatsApp (con indicativo de país).';return;}
   b.disabled=true;b.textContent='Abriendo la guía…';
-  var wa='https://wa.me/12064265579?text='+encodeURIComponent('Hola, soy '+v.nombre+'. Acabo de desbloquear la guía de Claude para ventas de @vende30x y la dejo guardada aquí para no perderla: https://magnet.30x.com/guia-claude-ventas?ok=1');
+  var wa='https://wa.me/12064265579?text='+encodeURIComponent('Hola Emma, soy '+v.nombre+'. Quiero probar el agente. Te dejo el link de la guía de Claude para ventas de @vende30x para tenerlo guardado: https://magnet.30x.com/guia-claude-ventas?ok=1');
   var win=null;try{win=window.open(wa,'_blank','noopener');}catch(e){}
   var p={programa:'guia_claude',origen:'guia-claude-ventas',ruta:'ig_vende30x',nombre:v.nombre,email:v.email,whatsapp:v.whatsapp,empresa:v.empresa,rol:v.rol,dirige_equipo:v.equipo,senales:{crm:v.crm,tamano_equipo:v.equipo,programa_interes:'ai_sales',utm:qs(),pagina:location.href},enviado_en:new Date().toISOString()};
   try{fetch(ENDPOINT,{method:'POST',keepalive:true,mode:'cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(p)}).catch(function(){});}catch(e){}
@@ -65,7 +65,7 @@ function form(host){
    fetch(F30X,{method:'POST',keepalive:true,mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(fp)}).catch(function(){});}catch(e){}
   try{if(window.fbq){fbq('track','Lead',{content_name:'guia-claude-ventas'});fbq('track','CompleteRegistration',{content_name:'guia-claude-ventas'});fbq('trackCustom','Registro',{content_name:'guia-claude-ventas',rol:v.rol,equipo:v.equipo});}}catch(e){}
   try{if(window.gtag)gtag('event','generate_lead',{form:'guia-claude-ventas'});}catch(e){}
-  host.innerHTML='';var ok=n('div',{cls:'gok'});ok.appendChild(document.createTextNode('¡Listo, '+v.nombre.split(' ')[0]+'! La guía está abierta abajo. Guárdala en tu WhatsApp para no perderla. '));var ea=n('a',{href:wa,target:'_blank',rel:'noopener',style:'display:inline-block;margin-top:10px;background:#000;color:#E9FF7B;padding:10px 16px;border-radius:999px;font-weight:800;text-decoration:none'},'Guardar la guía en mi WhatsApp →');ok.appendChild(n('br'));ok.appendChild(ea);host.appendChild(ok);
+  host.innerHTML='';var ok=n('div',{cls:'gok'});ok.appendChild(document.createTextNode('¡Listo, '+v.nombre.split(' ')[0]+'! La guía está abierta abajo. Guárdala en tu WhatsApp para no perderla. '));var ea=n('a',{href:wa,target:'_blank',rel:'noopener',style:'display:inline-block;margin-top:10px;background:#000;color:#E9FF7B;padding:10px 16px;border-radius:999px;font-weight:800;text-decoration:none'},'Probar a Emma en WhatsApp →');ok.appendChild(n('br'));ok.appendChild(ea);host.appendChild(ok);
   setTimeout(function(){unlock(true);},400);
  });
 }
