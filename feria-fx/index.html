@@ -1,281 +1,264 @@
 <!doctype html>
-<html lang="es">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex">
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow">
 <title>Negocia como world class</title>
+<meta name="description" content="Guía de negociación de Andrés Bilbao · Feria EFFIX 2026: 7 principios de Cialdini y 7 Bilbao Basics.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#0a0a0a;--card:#141414;--line:#262626;--lima:#E9FF7B;--crema:#F4EFE6;--muted:#a8a39a;}
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--crema);font-family:Inter,system-ui,sans-serif;line-height:1.55;font-size:16px;-webkit-font-smoothing:antialiased}
-.wrap{max-width:760px;margin:0 auto;padding:28px 16px 64px}
-.tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--bg);background:var(--lima);padding:5px 10px;border-radius:99px}
-h1{font-size:clamp(32px,8vw,52px);line-height:1.04;font-weight:900;letter-spacing:-.03em;margin:18px 0 12px}
-h1 em{font-style:normal;color:var(--lima)}
-.sub{color:var(--muted);font-size:17px}
-.hola{font-size:20px;font-weight:700;color:var(--lima);margin-top:20px;display:none}
-.btn{display:block;text-align:center;background:var(--lima);color:#0a0a0a;font-weight:800;font-size:18px;text-decoration:none;padding:18px 20px;border-radius:14px;margin:24px 0 8px}
-.btn:active{transform:scale(.98)}
-.note{font-size:13px;color:var(--muted);text-align:center}
-h2{font-size:26px;font-weight:800;letter-spacing:-.02em;margin:48px 0 14px;line-height:1.15}
-h2 span{color:var(--lima)}
-h3{font-size:20px;font-weight:800;margin-bottom:6px;letter-spacing:-.01em}
-p{margin:8px 0}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin:14px 0}
-.num{font-size:13px;font-weight:800;color:var(--lima);letter-spacing:.1em;text-transform:uppercase}
-.src{font-size:13px;color:var(--muted);margin-top:2px}
-.lbl{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:14px}
-.quote{border-left:3px solid var(--lima);padding:8px 12px;margin:6px 0;background:#1b1b14;border-radius:0 10px 10px 0;font-weight:600}
-.err{color:#ffb4a2}
-ul{padding-left:20px;margin:6px 0}
-li{margin:4px 0}
-.do{background:#1b1f0c;border-radius:12px;padding:12px 14px;margin-top:12px}
-.do .lbl{color:var(--lima);margin-top:0}
-table{width:100%;border-collapse:collapse;font-size:15px}
-td{border-bottom:1px solid var(--line);padding:10px 6px;vertical-align:top}
-td:first-child{font-weight:700;width:42%}
-.blank{border-bottom:1px dashed #555;min-height:22px}
-.diag li{list-style:none;margin:8px 0;padding-left:0}
-.diag{padding-left:0}
-.box{display:inline-block;width:16px;height:16px;border:2px solid var(--lima);border-radius:4px;vertical-align:-2px;margin-right:8px}
-.end{text-align:center;margin-top:48px;padding-top:24px;border-top:1px solid var(--line);color:var(--muted)}
-.end a{color:var(--lima);font-weight:700}
-.refs{font-size:13px;color:var(--muted)}
-.refs li{margin:3px 0}
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>:root{--ink:#000;--soft:#525252;--muted:#736d61;--cream:#f7f5f2;--sand:#f0ede8;--card:#fff;--line:rgba(0,0,0,.1);--lime:#E9FF7B;--olive:oklch(0.42 0.1 128);--r:16px}
+*{box-sizing:border-box}html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--cream);color:var(--ink);font:400 17px/1.6 Inter,ui-sans-serif,system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.wrap{max-width:1080px;margin:0 auto;padding-inline:20px}
+h1,h2,h3{text-wrap:balance}
+.label{font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--olive)}
+/* hero */
+.hero{position:relative;min-height:88vh;background:#000;color:#f4f4f2;display:flex;align-items:flex-end;overflow:hidden}
+.glow{position:absolute;inset:0;background:radial-gradient(60% 50% at 80% 20%,rgba(233,255,123,.28),transparent 70%),radial-gradient(50% 60% at 10% 90%,rgba(233,255,123,.12),transparent 70%)}
+.dissolve{position:absolute;left:0;right:0;bottom:0;height:110px;background:linear-gradient(to bottom,transparent,var(--cream))}
+.hero .wrap{position:relative;z-index:2;width:100%;padding-block:96px 150px}
+.lockup{display:flex;align-items:center;gap:14px;flex-wrap:wrap}.brand{font-size:30px;font-weight:900;letter-spacing:-.04em;color:#fff}.lx{color:rgba(255,255,255,.45);font-size:24px;font-weight:300}.ev{font-size:18px;font-weight:600;color:rgba(255,255,255,.8)}
+.kick{display:inline-block;margin-top:40px;font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;background:var(--lime);color:#000;padding:9px 13px;border-radius:8px}
+.hola{display:none;margin:22px 0 0;font-size:20px;font-weight:700;color:var(--lime)}
+.hero h1{font-size:clamp(44px,9vw,92px);line-height:.96;letter-spacing:-.045em;font-weight:850;margin:22px 0 0;max-width:900px}
+.hero h1 span{display:block;color:var(--lime)}
+.lead{font-size:clamp(17px,2.3vw,21px);color:rgba(244,244,242,.75);max-width:640px;margin:24px 0 0}
+.hbtns{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.heroapply,.ghost{display:inline-block;font-weight:800;font-size:15px;padding:12px 20px;border-radius:999px;text-decoration:none}
+.heroapply{background:var(--lime);color:#000}.ghost{border:1px solid rgba(255,255,255,.3);color:#fff}
+.stats{display:flex;flex-wrap:wrap;gap:28px 36px;margin-top:40px}
+.stats b{display:block;font-size:40px;font-weight:850;letter-spacing:-.03em;color:#fff;line-height:1}
+.stats span{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:rgba(244,244,242,.55)}
+/* index */
+.idx{padding-block:24px 64px}
+.idx h2,.sec h2{font-size:clamp(30px,4.6vw,48px);line-height:1.04;letter-spacing:-.035em;font-weight:850;margin:12px 0 0}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:28px}
+.c{position:relative;overflow:hidden;min-height:118px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;text-decoration:none;color:var(--ink);display:flex;flex-direction:column;justify-content:space-between;gap:10px;isolation:isolate}
+.c::before{content:"";position:absolute;right:-30px;top:-30px;width:60px;height:60px;border-radius:50%;background:var(--lime);transition:transform .6s cubic-bezier(.2,.7,.2,1);z-index:-1}
+.c:hover::before{transform:scale(14)}
+.c .cn{font-weight:800;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.c h3{font-size:20px;line-height:1.12;letter-spacing:-.02em;font-weight:800;margin:0}
+.c.read .cn::after{content:" ✓";color:var(--olive)}
+.c.wide{background:#000;color:#fff}.c.wide .cn{color:var(--lime)}.c.wide:hover,.c.wide:hover .cn{color:#000}
+.prog{height:10px;background:var(--sand);border-radius:999px;overflow:hidden;margin-top:24px}
+.prog i{display:block;height:100%;width:0;background:#000;transition:width .4s}
+.progt{margin:8px 0 0;font-weight:700;font-size:14px;color:var(--muted)}
+/* sections */
+.sec{padding-block:64px;border-top:1px solid var(--line)}
+.part{background:#000;color:#f4f4f2}.part .label{color:var(--lime)}.part .intro{color:rgba(244,244,242,.7)}
+.intro{color:var(--soft);max-width:720px;margin:14px 0 0}
+.cap{padding-block:64px;border-top:1px solid var(--line);scroll-margin-top:8px}
+.cap:nth-of-type(even){background:#fff}
+.caph{display:flex;gap:18px;align-items:flex-start}
+.caph .n{flex:none;font-weight:850;font-size:44px;line-height:1;letter-spacing:-.04em;color:var(--lime);background:#000;border-radius:14px;padding:12px 14px}
+.caph h2{font-size:clamp(28px,4vw,44px);line-height:1.05;letter-spacing:-.035em;font-weight:850;margin:6px 0 0}
+.caph .sub{color:var(--soft);font-size:18px;margin:10px 0 0}
+h3{font-size:19px;font-weight:800;letter-spacing:-.01em;margin:0 0 12px}h3.mt{margin-top:32px}
+.platg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.platg div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.cap:nth-of-type(even) .platg div{background:var(--cream)}
+.platg span{display:block;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--olive)}
+.platg b{display:block;margin-top:4px;font-weight:500;font-size:15px;line-height:1.5}
+.prompt{margin-top:18px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.pbar{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 14px;background:var(--sand);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.prompt pre{margin:0;padding:16px;white-space:pre-wrap;word-break:break-word;font:500 15px/1.6 "JetBrains Mono",ui-monospace,monospace;color:#1a1a1a}
+button.copy,button.dl{appearance:none;border:0;cursor:pointer;background:#000;color:#fff;font:800 12px Inter,sans-serif;letter-spacing:.04em;padding:8px 14px;border-radius:999px}
+button.dl{font-size:15px;padding:13px 22px}
+button.copy.ok,button.dl.ok{background:var(--lime);color:#000}
+button.lnk{appearance:none;border:0;background:none;color:var(--muted);font:600 14px Inter,sans-serif;text-decoration:underline;cursor:pointer}
+.cols2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;margin-top:12px}
+.prob{background:#000;color:#f4f4f2;border-radius:var(--r);padding:16px 18px;font-size:16px}.prob b{color:var(--lime)}
+.ej{display:block;border-left:4px solid var(--lime);background:var(--sand);border-radius:0 14px 14px 0;padding:14px 16px}
+.ej b{display:block;font-weight:600;font-size:15px;margin:4px 0 8px}
+textarea{width:100%;font:400 16px/1.5 Inter,sans-serif;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px;resize:vertical}
+textarea:focus{outline:2px solid #000;outline-offset:1px}
+.hoja{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:28px}
+.hf{display:block;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.hf span{display:block;font-weight:700;font-size:14px;margin-bottom:8px}
+.hf textarea{background:var(--cream)}
+.acts{display:flex;gap:16px;align-items:center;margin-top:20px}
+.score{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 10px;margin-top:24px;background:#000;color:#fff;border-radius:18px;padding:18px 20px}
+.score b{font-size:48px;font-weight:850;letter-spacing:-.04em;color:var(--lime);line-height:1}.score span{color:rgba(255,255,255,.6);font-weight:700}
+.score p{flex-basis:100%;margin:6px 0 0;font-size:16px}
+.ruta{display:grid;gap:10px;margin-top:20px}
+.ck{position:relative;display:grid;grid-template-columns:28px 1fr;gap:14px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;cursor:pointer}
+.ck input{position:absolute;opacity:0}
+.ck .box{width:26px;height:26px;border-radius:8px;border:2px solid var(--ink);display:grid;place-items:center}
+.ck input:checked+.box{background:var(--lime);border-color:#000}
+.ck input:checked+.box::after{content:"✓";font-weight:900}
+.ck input:focus-visible+.box{outline:3px solid var(--olive);outline-offset:2px}
+.ck .what{color:var(--soft);font-size:16px}
+.roles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:24px}
+.roles div{background:#000;color:#fff;border-radius:14px;padding:16px}.roles div:first-child{background:var(--lime);color:#000}
+.roles b{display:block;font-size:18px;line-height:1.25}.roles span{font-size:14px;opacity:.75}
+.refs{font-size:14px;color:var(--muted);margin-top:28px}
+.end{background:#000;color:#f4f4f2;padding-block:40px;font-size:18px;font-weight:600}
+.end p{margin:0}.end a{color:var(--lime)}
+@media (max-width:860px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.platg,.roles,.cols2,.hoja{grid-template-columns:1fr}}
+@media (max-width:520px){.wrap{padding-inline:16px}.cards{grid-template-columns:1fr 1fr;gap:8px}.c{min-height:104px;padding:14px}.c h3{font-size:16px}.c .cn{font-size:10px}.caph{gap:14px}.caph .n{font-size:30px;padding:10px 11px}.hero .wrap{padding-block:72px 130px}.cap,.sec{padding-block:48px}}
 @media print{
-  @page{size:A4;margin:0}
-  body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  .btn,.note,.hola{display:none!important}
-  .wrap{padding:12mm 14mm;max-width:none} .card,h2{margin-top:10mm}
-  .card{break-inside:avoid}
-  h2{break-after:avoid}
-  .pb{break-before:page}
+ @page{size:A4;margin:12mm 0}
+ body{-webkit-print-color-adjust:exact;print-color-adjust:exact;font-size:13px}
+ .hero{min-height:0}.hero .wrap{padding-block:16mm 12mm}.dissolve,.hbtns,.prog,.progt,.acts,button,.hola{display:none!important}
+ .wrap{padding-inline:14mm;max-width:none}
+ .cap,.sec{padding-block:8mm}.cap{break-inside:avoid}.pb{break-before:page}
+ .c::before{display:none}.cards{grid-template-columns:repeat(3,1fr)}.c{min-height:0}
+ textarea{min-height:16mm;resize:none}
 }
-</style>
-</head>
-<body>
-<div class="wrap">
-<span class="tag">Feria EFFIX 2026 · Guía</span>
-<h1>Negocia como <em>world class</em>: los principios que uso para cerrar</h1>
-<p class="sub">Andrés Bilbao · Co-founder de Rappi, 30X y KillB</p>
+</style></head><body>
+<header class="hero"><div class="glow"></div><div class="dissolve"></div><div class="wrap">
+<div class="lockup"><b class="brand">30X</b><span class="lx">×</span><span class="ev">Feria EFFIX 2026</span></div>
+<span class="kick">Guía de la charla · Andrés Bilbao</span>
 <p class="hola" id="hola"></p>
-<a class="btn" href="guia-bilbao-feria-fx.pdf" download>Descargar la guía (PDF)</a>
-<p class="note">Úsala antes de tu próxima negociación: con clientes, proveedores, socios o inversionistas.</p>
-
-<h2><span>01</span> Quién soy</h2>
-<ul>
-<li>Co-founder de Rappi, 30X y KillB.</li>
-<li>Ángel inversionista (B2), con más de 25 compañías incubadas.</li>
-<li>Desarrollador de ecosistema.</li>
-</ul>
-<div class="card">
-<div class="lbl" style="margin-top:0">Dónde he negociado</div>
-<ul>
-<li><strong>Rappi:</strong> negociación sencilla con docenas de restaurantes; negociación compleja con supermercados y marcas, y la adquisición de tres compañías.</li>
-<li><strong>Ángel e inversión (B2):</strong> negociación de inversión y partnerships; 70 inversiones ángel.</li>
-<li><strong>30X:</strong> 6 business partners negociados; reclutamiento del VP de AI y de un equipo AI-first de 12 personas.</li>
-</ul>
+<h1>Negocia como <span>world class</span></h1>
+<p class="lead">Los 7 principios de persuasión de Robert Cialdini y los 7 Bilbao Basics que uso para cerrar con clientes, partners e inversionistas. Con jugadas listas para copiar, una hoja de preparación y un autodiagnóstico.</p>
+<div class="hbtns"><a class="heroapply" href="#indice">Empezar</a><a class="ghost" href="guia-bilbao-feria-fx.pdf" download>Descargar PDF</a></div>
+<div class="stats"><div><b>14</b><span>principios</span></div><div><b>+25</b><span>compañías incubadas</span></div><div><b>70</b><span>inversiones ángel</span></div></div>
+</div></header>
+<main>
+<section class="idx" id="indice"><div class="wrap"><div class="label">Índice</div><h2>Lo que vas a llevarte</h2>
+<div class="cards"><a class="c" href="#c-reciprocidad"><span class="cn">01 · Cialdini</span><h3>Reciprocidad</h3></a><a class="c" href="#c-compromiso"><span class="cn">02 · Cialdini</span><h3>Compromiso y consistencia</h3></a><a class="c" href="#c-prueba-social"><span class="cn">03 · Cialdini</span><h3>Prueba social (la manada)</h3></a><a class="c" href="#c-autoridad"><span class="cn">04 · Cialdini</span><h3>Autoridad</h3></a><a class="c" href="#c-agrado"><span class="cn">05 · Cialdini</span><h3>Agrado (caer bien)</h3></a><a class="c" href="#c-escasez"><span class="cn">06 · Cialdini</span><h3>Escasez</h3></a><a class="c" href="#c-unidad"><span class="cn">07 · Cialdini</span><h3>Unidad</h3></a><a class="c" href="#b-strongest-reality"><span class="cn">08 · Bilbao Basic</span><h3>Strongest reality wins</h3></a><a class="c" href="#b-no-negociar-uno-mismo"><span class="cn">09 · Bilbao Basic</span><h3>No negociar con uno mismo</h3></a><a class="c" href="#b-partir-torta"><span class="cn">10 · Bilbao Basic</span><h3>Partir la torta antes</h3></a><a class="c" href="#b-anclar"><span class="cn">11 · Bilbao Basic</span><h3>Anclar</h3></a><a class="c" href="#b-comparacion"><span class="cn">12 · Bilbao Basic</span><h3>Comparación</h3></a><a class="c" href="#b-default"><span class="cn">13 · Bilbao Basic</span><h3>Default &amp; Standard (quitar fricción siempre)</h3></a><a class="c" href="#b-placebo"><span class="cn">14 · Bilbao Basic</span><h3>Placebo</h3></a>
+<a class="c wide" href="#hoja"><span class="cn">15 · Herramienta</span><h3>Hoja de preparación</h3></a>
+<a class="c wide" href="#diagnostico"><span class="cn">16 · Herramienta</span><h3>Autodiagnóstico</h3></a>
+<a class="c wide" href="#charla"><span class="cn">17 · Contexto</span><h3>De la charla</h3></a>
 </div>
-<p>Esta guía sigue mi charla: primero los 7 principios de persuasión de Robert Cialdini y después los Bilbao Basics, lo que uso yo en cada mesa.</p>
-<h2><span>02</span> Los 7 principios de Robert Cialdini</h2>
-<p class="src">Robert Cialdini, <em>Influence</em> (Unidad se suma en <em>Pre-Suasion</em> y en la edición ampliada de <em>Influence</em>).</p>
-<div class="card" id="c-reciprocidad">
-<div class="num">Cialdini 1</div>
-<h3>Reciprocidad</h3>
-<p>Cuando alguien recibe algo de valor primero, siente la necesidad de devolverlo.</p>
-<div class="lbl">Cómo usarlo (ventas · partners · inversión)</div>
-<p>Da antes de pedir: un diagnóstico, una intro útil, un dato de su mercado. En inversión, ayuda al founder antes de que haya term sheet; en partners, abre puertas antes de proponer el acuerdo.</p>
-<div class="lbl">Frase o jugada</div>
-<div class="quote">«Antes de hablar de números, te traje tres cosas que vi en tu operación y que puedes usar aunque no trabajemos juntos.»</div>
-<div class="lbl">Error común</div>
-<p class="err">Dar algo genérico o condicionado. Si el regalo no es personal y valioso, no genera reciprocidad.</p>
-</div>
-<div class="card" id="c-compromiso">
-<div class="num">Cialdini 2</div>
-<h3>Compromiso y consistencia</h3>
-<p>Las personas quieren ser coherentes con lo que ya dijeron o hicieron, sobre todo si lo dijeron en voz alta o por escrito.</p>
-<div class="lbl">Cómo usarlo (ventas · partners · inversión)</div>
-<p>Consigue compromisos pequeños y explícitos: que la otra parte diga qué problema quiere resolver, qué criterio usará para decidir y para cuándo. Después vuelve a esas palabras.</p>
-<div class="lbl">Frase o jugada</div>
-<div class="quote">«Me dijiste que la prioridad del trimestre es bajar el CAC. Si esto lo baja, ¿avanzamos esta semana?»</div>
-<div class="lbl">Error común</div>
-<p class="err">Pedir el gran sí de entrada sin construir antes una cadena de sís pequeños.</p>
-</div>
-<div class="card" id="c-prueba-social">
-<div class="num">Cialdini 3</div>
-<h3>Prueba social (la manada)</h3>
-<p>Ante la duda, hacemos lo que hacen otros parecidos a nosotros.</p>
-<div class="lbl">Cómo usarlo (ventas · partners · inversión)</div>
-<p>Muestra quién ya está adentro: clientes de su misma industria, coinversionistas, partners de su tamaño. En una ronda, el líder que ya entró mueve a los demás.</p>
-<div class="lbl">Frase o jugada</div>
-<div class="quote">«Tres empresas de tu tamaño en tu sector ya lo implementaron; te cuento qué cambió en la primera.»</div>
-<div class="lbl">Error común</div>
-<p class="err">Mostrar logos que no se parecen al cliente. La manada funciona cuando es su manada.</p>
-</div>
-<div class="card" id="c-autoridad">
-<div class="num">Cialdini 4</div>
-<h3>Autoridad</h3>
-<p>Le creemos más a quien percibimos como experto creíble.</p>
-<div class="lbl">Cómo usarlo (ventas · partners · inversión)</div>
-<p>Establece credibilidad antes de proponer: experiencia relevante, datos, quién te respalda. Si no eres tú la autoridad, trae a quien lo sea a la mesa.</p>
-<div class="lbl">Frase o jugada</div>
-<div class="quote">«Esto lo hemos hecho con docenas de cuentas como la tuya; te muestro qué funcionó y qué no.»</div>
-<div class="lbl">Error común</div>
-<p class="err">Presumir credenciales que no tienen relación con el problema del otro.</p>
-</div>
-<div class="card" id="c-agrado">
-<div class="num">Cialdini 5</div>
-<h3>Agrado (caer bien)</h3>
-<p>Le decimos que sí más fácil a quien nos cae bien: similitud, elogios sinceros, cooperación.</p>
-<div class="lbl">Cómo usarlo (ventas · partners · inversión)</div>
-<p>Encuentra puntos en común reales y trata la negociación como un problema compartido. En partners e inversión la relación dura años; caer bien es parte del valor.</p>
-<div class="lbl">Frase o jugada</div>
-<div class="quote">«Estamos del mismo lado del problema: ¿cómo lo resolvemos para que los dos quedemos bien con nuestros equipos?»</div>
-<div class="lbl">Error común</div>
-<p class="err">Confundir caer bien con ceder. Puedes ser cálido con la persona y firme con los términos.</p>
-</div>
-<div class="card" id="c-escasez">
-<div class="num">Cialdini 6</div>
-<h3>Escasez</h3>
-<p>Valoramos más lo que es limitado o lo que podemos perder.</p>
-<div class="lbl">Cómo usarlo (ventas · partners · inversión)</div>
-<p>Haz visible lo que es realmente escaso: cupos, tiempo de tu equipo, ventana de inversión, condiciones que vencen. Enmarca también lo que pierden si no deciden.</p>
-<div class="lbl">Frase o jugada</div>
-<div class="quote">«Tenemos capacidad para dos implementaciones este trimestre; una ya está tomada.»</div>
-<div class="lbl">Error común</div>
-<p class="err">Escasez inventada. Si la descubren, pierdes toda la credibilidad de la negociación.</p>
-</div>
-<div class="card" id="c-unidad">
-<div class="num">Cialdini 7</div>
-<h3>Unidad</h3>
-<p>Decimos que sí más fácil a quien sentimos parte de nuestro grupo: mismo origen, misma misión, mismo «nosotros».</p>
-<div class="lbl">Cómo usarlo (ventas · partners · inversión)</div>
-<p>Habla en términos de identidad compartida: el mismo ecosistema, la misma apuesta por LatAm, el mismo tipo de founder. En una ronda o una alianza, construye el «nosotros» antes del contrato.</p>
-<div class="lbl">Frase o jugada</div>
-<div class="quote">«Esto no es proveedor y cliente: es un equipo que quiere que a la región le vaya bien.»</div>
-<div class="lbl">Error común</div>
-<p class="err">Usar el «nosotros» como frase vacía, sin acciones que lo respalden.</p>
-</div>
-<h2 class="pb"><span>03</span> Bilbao Basics</h2>
-<div class="card" id="b-strongest-reality">
-<div class="num">Bilbao Basic</div>
-<h3>Strongest reality wins</h3>
-<p>En una negociación gana la realidad más sólida: la que tiene más datos, más alternativas y más claridad sobre lo que pasa si no hay acuerdo.</p>
-<div class="lbl">Cómo usarlo (ventas · partners · inversión)</div>
-<p>Llega con tu realidad documentada: números, alternativas concretas y el costo de no cerrar para la otra parte. Si su realidad es más fuerte que la tuya, trabaja en fortalecer la tuya antes de sentarte.</p>
-<div class="lbl">Frase o jugada</div>
-<div class="quote">«Estos son los números de los últimos seis meses. Con esto sobre la mesa, ¿qué ves distinto?»</div>
-<div class="lbl">Error común</div>
-<p class="err">Negociar con opiniones y adjetivos en vez de hechos y alternativas.</p>
-</div>
-<div class="card" id="b-no-negociar-uno-mismo">
-<div class="num">Bilbao Basic</div>
-<h3>No negociar con uno mismo</h3>
-<p>No bajes tu propuesta antes de que la otra parte responda. Cada concesión debe ser respuesta a algo y a cambio de algo.</p>
-<div class="lbl">Cómo usarlo (ventas · partners · inversión)</div>
-<p>Haz tu propuesta y calla. Si hay silencio o una objeción vaga, pregunta antes de mover el número. En inversión y partners, no rebajes la valoración o la participación «por si acaso».</p>
-<div class="lbl">Frase o jugada</div>
-<div class="quote">«Esa es mi propuesta. ¿Qué parte no te funciona?»</div>
-<div class="lbl">Error común</div>
-<p class="err">Ofrecer un descuento a mitad de frase o mandar una segunda propuesta más barata sin que nadie la haya pedido.</p>
-</div>
-<div class="card" id="b-partir-torta">
-<div class="num">Bilbao Basic</div>
-<h3>Partir la torta antes</h3>
-<p>Acuerda cómo se reparte el valor antes de crearlo, mientras todos están alineados y nadie siente que pierde.</p>
-<div class="lbl">Cómo usarlo (ventas · partners · inversión)</div>
-<p>Define participaciones, comisiones, roles y salidas al inicio: con socios, con partners y en el primer equipo. Es mucho más fácil partir una torta que todavía no existe.</p>
-<div class="lbl">Frase o jugada</div>
-<div class="quote">«Antes de arrancar, dejemos por escrito cómo nos repartimos lo que salga de aquí y qué pasa si alguien se va.»</div>
-<div class="lbl">Error común</div>
-<p class="err">Dejar el reparto «para cuando haya algo». Cuando hay algo, cada uno recuerda el acuerdo distinto.</p>
-</div>
-<div class="card" id="b-anclar">
-<div class="num">Bilbao Basic</div>
-<h3>Anclar</h3>
-<p>El primer número que se pone sobre la mesa condiciona toda la conversación que sigue.</p>
-<div class="lbl">Cómo usarlo (ventas · partners · inversión)</div>
-<p>Pon tú el primer número: ambicioso pero defendible. Si te anclan a ti, no contraofertes contra su número: vuelve a tu referencia.</p>
-<div class="lbl">Frase o jugada</div>
-<div class="quote">«Proyectos con este alcance están entre X y Y; por lo que me contaste, estamos más cerca de Y.»</div>
-<div class="lbl">Error común</div>
-<p class="err">Esperar a que el otro ponga el número, o anclar tan alto que se rompe la confianza.</p>
-</div>
-<div class="card" id="b-comparacion">
-<div class="num">Bilbao Basic</div>
-<h3>Comparación</h3>
-<p>Nada se evalúa en el vacío: se evalúa contra algo. Si tú eliges el punto de comparación, controlas cómo se percibe el valor.</p>
-<div class="lbl">Cómo usarlo (ventas · partners · inversión)</div>
-<p>Presenta opciones (por ejemplo, tres paquetes) y compara contra el costo del problema, no contra el precio de otro proveedor. En inversión, compara contra el costo de no tener el capital o el socio.</p>
-<div class="lbl">Frase o jugada</div>
-<div class="quote">«Hoy este problema te cuesta X al mes. La solución cuesta una fracción de eso.»</div>
-<div class="lbl">Error común</div>
-<p class="err">Dejar que el cliente compare solo por precio contra la alternativa más barata.</p>
-</div>
-<div class="card" id="b-default">
-<div class="num">Bilbao Basic</div>
-<h3>Default & Standard (quitar fricción siempre)</h3>
-<p>La gente tiende a quedarse con la opción por defecto y con lo que parece estándar. Cada paso extra es una oportunidad para que el acuerdo se caiga.</p>
-<div class="lbl">Cómo usarlo (ventas · partners · inversión)</div>
-<p>Lleva el contrato listo, los términos estándar ya escritos y el siguiente paso con fecha. Que decir que sí sea lo más fácil posible.</p>
-<div class="lbl">Frase o jugada</div>
-<div class="quote">«Te dejo el acuerdo con nuestros términos estándar; si te parece, lo firmamos hoy y arrancamos el lunes.»</div>
-<div class="lbl">Error común</div>
-<p class="err">Terminar la reunión con «te mando algo» sin fecha ni documento: la fricción mata deals.</p>
-</div>
-<div class="card" id="b-placebo">
-<div class="num">Bilbao Basic</div>
-<h3>Placebo</h3>
-<p>La percepción de valor cambia el valor percibido: cómo presentas algo influye en cuánto lo valora la otra parte.</p>
-<div class="lbl">Cómo usarlo (ventas · partners · inversión)</div>
-<p>Cuida el empaque: presentación, puntualidad, nombre de la oferta, quién la presenta. Una propuesta bien presentada se percibe más valiosa que la misma propuesta mal presentada.</p>
-<div class="lbl">Frase o jugada</div>
-<div class="quote">«Esta es la propuesta para tu equipo», con un documento claro, personalizado y a tiempo.</div>
-<div class="lbl">Error común</div>
-<p class="err">Creer que basta con que la oferta sea buena. Si se ve improvisada, se valora como improvisada.</p>
-</div>
-<h2 class="pb"><span>04</span> Hoja de preparación (1 página)</h2>
-<div class="card">
-<table>
-<tr><td>Negociación con / fecha</td><td><div class="blank"></div></td></tr>
-<tr><td>Strongest reality: mis datos y mis alternativas</td><td><div class="blank"></div></td></tr>
-<tr><td>Su realidad: qué pasa si no hay acuerdo para ellos</td><td><div class="blank"></div></td></tr>
-<tr><td>Partir la torta: reparto acordado antes (roles, %, salidas)</td><td><div class="blank"></div></td></tr>
-<tr><td>Mi ancla y el criterio que la justifica</td><td><div class="blank"></div></td></tr>
-<tr><td>Mi punto de retiro (no negocio conmigo mismo por debajo)</td><td><div class="blank"></div></td></tr>
-<tr><td>Contra qué me van a comparar · contra qué quiero que me comparen</td><td><div class="blank"></div></td></tr>
-<tr><td>Default: documento listo, términos estándar y siguiente paso con fecha</td><td><div class="blank"></div></td></tr>
-<tr><td>Placebo: cómo presento (empaque, quién, cuándo)</td><td><div class="blank"></div></td></tr>
-<tr><td>Reciprocidad: qué doy antes de pedir</td><td><div class="blank"></div></td></tr>
-<tr><td>Compromisos pequeños que busco</td><td><div class="blank"></div></td></tr>
-<tr><td>Prueba social y autoridad que llevo</td><td><div class="blank"></div></td></tr>
-<tr><td>Escasez real que puedo mostrar</td><td><div class="blank"></div></td></tr>
-<tr><td>Unidad: nuestro «nosotros»</td><td><div class="blank"></div></td></tr>
-</table>
-</div>
-<h2><span>05</span> Autodiagnóstico rápido</h2>
-<p>Marca lo que hiciste en tu última negociación importante.</p>
-<div class="card">
-<ul class="diag">
-<li><span class="box"></span>Llegué con datos y alternativas: mi realidad era la más fuerte.</li>
-<li><span class="box"></span>No bajé mi propuesta antes de que la otra parte respondiera.</li>
-<li><span class="box"></span>El reparto del valor quedó acordado antes de crearlo.</li>
-<li><span class="box"></span>Puse yo el primer número.</li>
-<li><span class="box"></span>Elegí yo contra qué se comparaba mi oferta.</li>
-<li><span class="box"></span>Salí con documento y siguiente paso con fecha.</li>
-<li><span class="box"></span>Di algo de valor antes de pedir.</li>
-<li><span class="box"></span>Mostré prueba social de su misma «manada».</li>
-</ul>
-<p><strong>0–3:</strong> estás negociando por instinto: empieza por la hoja de preparación. <strong>4–6:</strong> buena base; trabaja anclar y no negociar contigo mismo. <strong>7–8:</strong> nivel avanzado; afina el placebo y la unidad para los acuerdos grandes.</p>
-</div>
+<div class="prog" aria-hidden="true"><i id="rprog"></i></div><p class="progt" id="rprogt">Llevas 0 de 14 principios leídos</p>
+</div></section>
+<section class="sec part"><div class="wrap"><div class="label">Parte 1</div><h2>Los 7 principios de Robert Cialdini</h2><p class="intro">De <em>Influence</em>; Unidad se suma en <em>Pre-Suasion</em> y en la edición ampliada de <em>Influence</em>. Cada uno con cómo se ve en una mesa real, la jugada para decirlo y el error que lo arruina.</p></div></section>
+<article class="cap" id="c-reciprocidad"><div class="wrap">
+<div class="caph"><div class="n">01</div><div><div class="label">Cialdini · principio 1</div><h2>Reciprocidad</h2><p class="sub">Cuando alguien recibe algo de valor primero, siente la necesidad de devolverlo.</p></div></div>
+<h3 class="mt">Cómo se ve en una negociación real</h3>
+<div class="platg"><div><span>Ventas</span><b>Llegas a la primera reunión con un diagnóstico corto de su embudo antes de hablar de precio.</b></div><div><span>Partners</span><b>Le presentas un cliente potencial al partner antes de proponerle el acuerdo.</b></div><div><span>Inversión</span><b>Ayudas al founder con una intro clave antes de que exista un term sheet.</b></div></div>
+<div class="prompt"><div class="pbar"><span>La jugada · dila así</span><button class="copy" type="button">Copiar</button></div><pre>«Antes de hablar de números, te traje tres cosas que vi en tu operación y que puedes usar aunque no trabajemos juntos.»</pre></div>
+<div class="cols2"><div class="prob"><b>Error común.</b> Dar algo genérico o condicionado. Si el regalo no es personal y valioso, no genera reciprocidad.</div>
+<label class="ej"><span class="label">Mini-ejercicio</span><b>Escribe una cosa concreta que puedes darle a tu próxima contraparte antes de pedirle algo.</b><textarea rows="2" data-k="ej-c-reciprocidad" placeholder="Escribe aquí tu respuesta"></textarea></label></div>
+</div></article><article class="cap" id="c-compromiso"><div class="wrap">
+<div class="caph"><div class="n">02</div><div><div class="label">Cialdini · principio 2</div><h2>Compromiso y consistencia</h2><p class="sub">Las personas quieren ser coherentes con lo que ya dijeron o hicieron, sobre todo si lo dijeron en voz alta o por escrito.</p></div></div>
+<h3 class="mt">Cómo se ve en una negociación real</h3>
+<div class="platg"><div><span>Ventas</span><b>Haces que el cliente diga qué problema quiere resolver y para cuándo. Luego vuelves a esas palabras.</b></div><div><span>Partners</span><b>Dejas por escrito el criterio de éxito de la alianza antes de discutir condiciones.</b></div><div><span>Inversión</span><b>Le preguntas al inversionista qué necesita ver para entrar, y le muestras exactamente eso.</b></div></div>
+<div class="prompt"><div class="pbar"><span>La jugada · dila así</span><button class="copy" type="button">Copiar</button></div><pre>«Me dijiste que la prioridad del trimestre es bajar el CAC. Si esto lo baja, ¿avanzamos esta semana?»</pre></div>
+<div class="cols2"><div class="prob"><b>Error común.</b> Pedir el gran sí de entrada sin construir antes una cadena de sís pequeños.</div>
+<label class="ej"><span class="label">Mini-ejercicio</span><b>Anota tres sís pequeños que vas a pedir antes del sí grande.</b><textarea rows="2" data-k="ej-c-compromiso" placeholder="Escribe aquí tu respuesta"></textarea></label></div>
+</div></article><article class="cap" id="c-prueba-social"><div class="wrap">
+<div class="caph"><div class="n">03</div><div><div class="label">Cialdini · principio 3</div><h2>Prueba social (la manada)</h2><p class="sub">Ante la duda, hacemos lo que hacen otros parecidos a nosotros.</p></div></div>
+<h3 class="mt">Cómo se ve en una negociación real</h3>
+<div class="platg"><div><span>Ventas</span><b>Muestras tres clientes de su misma industria y tamaño, no los logos más grandes que tengas.</b></div><div><span>Partners</span><b>Cuentas qué partners de su perfil ya están dentro y qué resultados tienen.</b></div><div><span>Inversión</span><b>En una ronda, el líder que ya entró mueve a los demás: lo dices primero.</b></div></div>
+<div class="prompt"><div class="pbar"><span>La jugada · dila así</span><button class="copy" type="button">Copiar</button></div><pre>«Tres empresas de tu tamaño en tu sector ya lo implementaron; te cuento qué cambió en la primera.»</pre></div>
+<div class="cols2"><div class="prob"><b>Error común.</b> Mostrar logos que no se parecen al cliente. La manada funciona cuando es su manada.</div>
+<label class="ej"><span class="label">Mini-ejercicio</span><b>Escribe los dos casos más parecidos a tu próxima contraparte.</b><textarea rows="2" data-k="ej-c-prueba-social" placeholder="Escribe aquí tu respuesta"></textarea></label></div>
+</div></article><article class="cap" id="c-autoridad"><div class="wrap">
+<div class="caph"><div class="n">04</div><div><div class="label">Cialdini · principio 4</div><h2>Autoridad</h2><p class="sub">Le creemos más a quien percibimos como experto creíble.</p></div></div>
+<h3 class="mt">Cómo se ve en una negociación real</h3>
+<div class="platg"><div><span>Ventas</span><b>Abres con experiencia relevante y datos de cuentas como la suya antes de proponer.</b></div><div><span>Partners</span><b>Llevas a la mesa a la persona de tu equipo que más sabe del tema del partner.</b></div><div><span>Inversión</span><b>Presentas métricas verificables y quién te respalda, no adjetivos.</b></div></div>
+<div class="prompt"><div class="pbar"><span>La jugada · dila así</span><button class="copy" type="button">Copiar</button></div><pre>«Esto lo hemos hecho con docenas de cuentas como la tuya; te muestro qué funcionó y qué no.»</pre></div>
+<div class="cols2"><div class="prob"><b>Error común.</b> Presumir credenciales que no tienen relación con el problema del otro.</div>
+<label class="ej"><span class="label">Mini-ejercicio</span><b>¿Qué dato o qué persona te da autoridad en esta negociación específica?</b><textarea rows="2" data-k="ej-c-autoridad" placeholder="Escribe aquí tu respuesta"></textarea></label></div>
+</div></article><article class="cap" id="c-agrado"><div class="wrap">
+<div class="caph"><div class="n">05</div><div><div class="label">Cialdini · principio 5</div><h2>Agrado (caer bien)</h2><p class="sub">Le decimos que sí más fácil a quien nos cae bien: similitud, elogios sinceros, cooperación.</p></div></div>
+<h3 class="mt">Cómo se ve en una negociación real</h3>
+<div class="platg"><div><span>Ventas</span><b>Encuentras puntos en común reales y planteas la compra como un problema compartido.</b></div><div><span>Partners</span><b>Tratas la negociación como el inicio de una relación de años, no como una transacción.</b></div><div><span>Inversión</span><b>Con un founder o un fondo, caer bien es parte del valor: van a trabajar juntos mucho tiempo.</b></div></div>
+<div class="prompt"><div class="pbar"><span>La jugada · dila así</span><button class="copy" type="button">Copiar</button></div><pre>«Estamos del mismo lado del problema: ¿cómo lo resolvemos para que los dos quedemos bien con nuestros equipos?»</pre></div>
+<div class="cols2"><div class="prob"><b>Error común.</b> Confundir caer bien con ceder. Puedes ser cálido con la persona y firme con los términos.</div>
+<label class="ej"><span class="label">Mini-ejercicio</span><b>Escribe dos puntos en común reales con tu contraparte.</b><textarea rows="2" data-k="ej-c-agrado" placeholder="Escribe aquí tu respuesta"></textarea></label></div>
+</div></article><article class="cap" id="c-escasez"><div class="wrap">
+<div class="caph"><div class="n">06</div><div><div class="label">Cialdini · principio 6</div><h2>Escasez</h2><p class="sub">Valoramos más lo que es limitado o lo que podemos perder.</p></div></div>
+<h3 class="mt">Cómo se ve en una negociación real</h3>
+<div class="platg"><div><span>Ventas</span><b>Haces visible la capacidad real de tu equipo: cupos, fechas de arranque, condiciones que vencen.</b></div><div><span>Partners</span><b>Muestras qué otras alianzas estás evaluando para la misma categoría.</b></div><div><span>Inversión</span><b>La ventana de la ronda tiene fecha de cierre y la cumples.</b></div></div>
+<div class="prompt"><div class="pbar"><span>La jugada · dila así</span><button class="copy" type="button">Copiar</button></div><pre>«Tenemos capacidad para dos implementaciones este trimestre; una ya está tomada.»</pre></div>
+<div class="cols2"><div class="prob"><b>Error común.</b> Escasez inventada. Si la descubren, pierdes toda la credibilidad de la negociación.</div>
+<label class="ej"><span class="label">Mini-ejercicio</span><b>¿Qué es realmente escaso en tu oferta? Si no hay nada, no lo inventes.</b><textarea rows="2" data-k="ej-c-escasez" placeholder="Escribe aquí tu respuesta"></textarea></label></div>
+</div></article><article class="cap" id="c-unidad"><div class="wrap">
+<div class="caph"><div class="n">07</div><div><div class="label">Cialdini · principio 7</div><h2>Unidad</h2><p class="sub">Decimos que sí más fácil a quien sentimos parte de nuestro grupo: mismo origen, misma misión, mismo «nosotros».</p></div></div>
+<h3 class="mt">Cómo se ve en una negociación real</h3>
+<div class="platg"><div><span>Ventas</span><b>Hablas de identidad compartida: el mismo tipo de empresa, el mismo reto en la región.</b></div><div><span>Partners</span><b>Construyes el «nosotros» de la alianza antes del contrato: misión común, metas comunes.</b></div><div><span>Inversión</span><b>Mismo ecosistema, misma apuesta por LatAm, mismo tipo de founder.</b></div></div>
+<div class="prompt"><div class="pbar"><span>La jugada · dila así</span><button class="copy" type="button">Copiar</button></div><pre>«Esto no es proveedor y cliente: es un equipo que quiere que a la región le vaya bien.»</pre></div>
+<div class="cols2"><div class="prob"><b>Error común.</b> Usar el «nosotros» como frase vacía, sin acciones que lo respalden.</div>
+<label class="ej"><span class="label">Mini-ejercicio</span><b>¿Cuál es el «nosotros» que compartes con tu contraparte?</b><textarea rows="2" data-k="ej-c-unidad" placeholder="Escribe aquí tu respuesta"></textarea></label></div>
+</div></article>
+<section class="sec part pb"><div class="wrap"><div class="label">Parte 2</div><h2>Bilbao Basics</h2><p class="intro">Lo que uso yo en cada mesa, después de negociar en Rappi, como ángel y en 30X.</p></div></section>
+<article class="cap" id="b-strongest-reality"><div class="wrap">
+<div class="caph"><div class="n">08</div><div><div class="label">Bilbao Basic 1</div><h2>Strongest reality wins</h2><p class="sub">En una negociación gana la realidad más sólida: la que tiene más datos, más alternativas y más claridad sobre lo que pasa si no hay acuerdo.</p></div></div>
+<h3 class="mt">Cómo se ve en una negociación real</h3>
+<div class="platg"><div><span>Ventas</span><b>Llegas con números de los últimos seis meses y el costo para el cliente de no resolver el problema.</b></div><div><span>Partners</span><b>Sabes qué otras alianzas tienes si esta no sale, y lo que pierde el partner si no hay acuerdo.</b></div><div><span>Inversión</span><b>Llegas con tracción documentada y otras conversaciones activas, no solo con un pitch.</b></div></div>
+<div class="prompt"><div class="pbar"><span>La jugada · dila así</span><button class="copy" type="button">Copiar</button></div><pre>«Estos son los números de los últimos seis meses. Con esto sobre la mesa, ¿qué ves distinto?»</pre></div>
+<div class="cols2"><div class="prob"><b>Error común.</b> Negociar con opiniones y adjetivos en vez de hechos y alternativas.</div>
+<label class="ej"><span class="label">Mini-ejercicio</span><b>Escribe tu mejor alternativa si no hay acuerdo, y la de ellos.</b><textarea rows="2" data-k="ej-b-strongest-reality" placeholder="Escribe aquí tu respuesta"></textarea></label></div>
+</div></article><article class="cap" id="b-no-negociar-uno-mismo"><div class="wrap">
+<div class="caph"><div class="n">09</div><div><div class="label">Bilbao Basic 2</div><h2>No negociar con uno mismo</h2><p class="sub">No bajes tu propuesta antes de que la otra parte responda. Cada concesión debe ser respuesta a algo y a cambio de algo.</p></div></div>
+<h3 class="mt">Cómo se ve en una negociación real</h3>
+<div class="platg"><div><span>Ventas</span><b>Das el precio y te callas. Si hay silencio, esperas; si hay objeción vaga, preguntas.</b></div><div><span>Partners</span><b>No ofreces más participación «por si acaso» antes de escuchar su contrapropuesta.</b></div><div><span>Inversión</span><b>No rebajas la valoración en el mismo correo donde la presentas.</b></div></div>
+<div class="prompt"><div class="pbar"><span>La jugada · dila así</span><button class="copy" type="button">Copiar</button></div><pre>«Esa es mi propuesta. ¿Qué parte no te funciona?»</pre></div>
+<div class="cols2"><div class="prob"><b>Error común.</b> Ofrecer un descuento a mitad de frase o mandar una segunda propuesta más barata sin que nadie la haya pedido.</div>
+<label class="ej"><span class="label">Mini-ejercicio</span><b>Define qué pides a cambio de cada concesión posible.</b><textarea rows="2" data-k="ej-b-no-negociar-uno-mismo" placeholder="Escribe aquí tu respuesta"></textarea></label></div>
+</div></article><article class="cap" id="b-partir-torta"><div class="wrap">
+<div class="caph"><div class="n">10</div><div><div class="label">Bilbao Basic 3</div><h2>Partir la torta antes</h2><p class="sub">Acuerda cómo se reparte el valor antes de crearlo, mientras todos están alineados y nadie siente que pierde.</p></div></div>
+<h3 class="mt">Cómo se ve en una negociación real</h3>
+<div class="platg"><div><span>Ventas</span><b>Defines comisiones y reglas de cuentas compartidas antes de que llegue el primer cliente grande.</b></div><div><span>Partners</span><b>Participaciones, roles y salidas quedan escritos el día uno.</b></div><div><span>Inversión</span><b>Vesting, pool y derechos acordados en la primera conversación seria, no en la due diligence.</b></div></div>
+<div class="prompt"><div class="pbar"><span>La jugada · dila así</span><button class="copy" type="button">Copiar</button></div><pre>«Antes de arrancar, dejemos por escrito cómo nos repartimos lo que salga de aquí y qué pasa si alguien se va.»</pre></div>
+<div class="cols2"><div class="prob"><b>Error común.</b> Dejar el reparto «para cuando haya algo». Cuando hay algo, cada uno recuerda el acuerdo distinto.</div>
+<label class="ej"><span class="label">Mini-ejercicio</span><b>Lista lo que todavía no está repartido en tu sociedad o alianza actual.</b><textarea rows="2" data-k="ej-b-partir-torta" placeholder="Escribe aquí tu respuesta"></textarea></label></div>
+</div></article><article class="cap" id="b-anclar"><div class="wrap">
+<div class="caph"><div class="n">11</div><div><div class="label">Bilbao Basic 4</div><h2>Anclar</h2><p class="sub">El primer número que se pone sobre la mesa condiciona toda la conversación que sigue.</p></div></div>
+<h3 class="mt">Cómo se ve en una negociación real</h3>
+<div class="platg"><div><span>Ventas</span><b>Pones tú el rango primero: ambicioso pero defendible con datos.</b></div><div><span>Partners</span><b>Propones tú la estructura del acuerdo (% y plazos) antes de que te llegue un borrador ajeno.</b></div><div><span>Inversión</span><b>Das la valoración con su lógica, en vez de preguntar «¿cuánto creen que valemos?».</b></div></div>
+<div class="prompt"><div class="pbar"><span>La jugada · dila así</span><button class="copy" type="button">Copiar</button></div><pre>«Proyectos con este alcance están entre X y Y; por lo que me contaste, estamos más cerca de Y.»</pre></div>
+<div class="cols2"><div class="prob"><b>Error común.</b> Esperar a que el otro ponga el número, o anclar tan alto que se rompe la confianza.</div>
+<label class="ej"><span class="label">Mini-ejercicio</span><b>Escribe tu ancla y la frase que la justifica.</b><textarea rows="2" data-k="ej-b-anclar" placeholder="Escribe aquí tu respuesta"></textarea></label></div>
+</div></article><article class="cap" id="b-comparacion"><div class="wrap">
+<div class="caph"><div class="n">12</div><div><div class="label">Bilbao Basic 5</div><h2>Comparación</h2><p class="sub">Nada se evalúa en el vacío: se evalúa contra algo. Si tú eliges el punto de comparación, controlas cómo se percibe el valor.</p></div></div>
+<h3 class="mt">Cómo se ve en una negociación real</h3>
+<div class="platg"><div><span>Ventas</span><b>Presentas tres opciones y comparas contra el costo del problema, no contra otro proveedor.</b></div><div><span>Partners</span><b>Comparas contra lo que le cuesta al partner construirlo solo.</b></div><div><span>Inversión</span><b>Comparas contra el costo de no tener el capital o el socio a tiempo.</b></div></div>
+<div class="prompt"><div class="pbar"><span>La jugada · dila así</span><button class="copy" type="button">Copiar</button></div><pre>«Hoy este problema te cuesta X al mes. La solución cuesta una fracción de eso.»</pre></div>
+<div class="cols2"><div class="prob"><b>Error común.</b> Dejar que el cliente compare solo por precio contra la alternativa más barata.</div>
+<label class="ej"><span class="label">Mini-ejercicio</span><b>¿Contra qué te van a comparar? ¿Contra qué quieres que te comparen?</b><textarea rows="2" data-k="ej-b-comparacion" placeholder="Escribe aquí tu respuesta"></textarea></label></div>
+</div></article><article class="cap" id="b-default"><div class="wrap">
+<div class="caph"><div class="n">13</div><div><div class="label">Bilbao Basic 6</div><h2>Default &amp; Standard (quitar fricción siempre)</h2><p class="sub">La gente tiende a quedarse con la opción por defecto y con lo que parece estándar. Cada paso extra es una oportunidad para que el acuerdo se caiga.</p></div></div>
+<h3 class="mt">Cómo se ve en una negociación real</h3>
+<div class="platg"><div><span>Ventas</span><b>Llegas con el contrato listo, términos estándar y fecha de arranque propuesta.</b></div><div><span>Partners</span><b>Tu borrador es el que se edita: el estándar lo pones tú.</b></div><div><span>Inversión</span><b>Usas documentos estándar del mercado para que no haya nada que revisar de más.</b></div></div>
+<div class="prompt"><div class="pbar"><span>La jugada · dila así</span><button class="copy" type="button">Copiar</button></div><pre>«Te dejo el acuerdo con nuestros términos estándar; si te parece, lo firmamos hoy y arrancamos el lunes.»</pre></div>
+<div class="cols2"><div class="prob"><b>Error común.</b> Terminar la reunión con «te mando algo» sin fecha ni documento: la fricción mata deals.</div>
+<label class="ej"><span class="label">Mini-ejercicio</span><b>Escribe el siguiente paso con fecha que vas a proponer al cerrar la reunión.</b><textarea rows="2" data-k="ej-b-default" placeholder="Escribe aquí tu respuesta"></textarea></label></div>
+</div></article><article class="cap" id="b-placebo"><div class="wrap">
+<div class="caph"><div class="n">14</div><div><div class="label">Bilbao Basic 7</div><h2>Placebo</h2><p class="sub">La percepción de valor cambia el valor percibido: cómo presentas algo influye en cuánto lo valora la otra parte.</p></div></div>
+<h3 class="mt">Cómo se ve en una negociación real</h3>
+<div class="platg"><div><span>Ventas</span><b>La propuesta llega personalizada, clara y a tiempo. El empaque también vende.</b></div><div><span>Partners</span><b>La presentación de la alianza tiene nombre propio y la presenta quien tiene más peso.</b></div><div><span>Inversión</span><b>El data room ordenado comunica tanto como los números.</b></div></div>
+<div class="prompt"><div class="pbar"><span>La jugada · dila así</span><button class="copy" type="button">Copiar</button></div><pre>«Esta es la propuesta para tu equipo. La armamos con lo que nos contaste el martes.»</pre></div>
+<div class="cols2"><div class="prob"><b>Error común.</b> Creer que basta con que la oferta sea buena. Si se ve improvisada, se valora como improvisada.</div>
+<label class="ej"><span class="label">Mini-ejercicio</span><b>¿Qué vas a mejorar del empaque de tu próxima propuesta?</b><textarea rows="2" data-k="ej-b-placebo" placeholder="Escribe aquí tu respuesta"></textarea></label></div>
+</div></article>
+<section class="sec pb" id="hoja"><div class="wrap"><div class="label">Herramienta</div><h2>Hoja de preparación</h2><p class="intro">Llénala antes de tu próxima negociación. Se guarda en este navegador y la puedes copiar como texto para pegarla en tus notas o en Claude.</p>
+<div class="hoja"><label class="hf"><span>Negociación con / fecha</span><textarea rows="2" data-k="h0" data-l="Negociación con / fecha"></textarea></label><label class="hf"><span>Mis datos y mis alternativas (strongest reality)</span><textarea rows="2" data-k="h1" data-l="Mis datos y mis alternativas (strongest reality)"></textarea></label><label class="hf"><span>Su realidad: qué pierden si no hay acuerdo</span><textarea rows="2" data-k="h2" data-l="Su realidad: qué pierden si no hay acuerdo"></textarea></label><label class="hf"><span>Reparto acordado antes (roles, %, salidas)</span><textarea rows="2" data-k="h3" data-l="Reparto acordado antes (roles, %, salidas)"></textarea></label><label class="hf"><span>Mi ancla y el criterio que la justifica</span><textarea rows="2" data-k="h4" data-l="Mi ancla y el criterio que la justifica"></textarea></label><label class="hf"><span>Mi punto de retiro (no negocio conmigo por debajo)</span><textarea rows="2" data-k="h5" data-l="Mi punto de retiro (no negocio conmigo por debajo)"></textarea></label><label class="hf"><span>Contra qué quiero que me comparen</span><textarea rows="2" data-k="h6" data-l="Contra qué quiero que me comparen"></textarea></label><label class="hf"><span>Siguiente paso con fecha (default)</span><textarea rows="2" data-k="h7" data-l="Siguiente paso con fecha (default)"></textarea></label><label class="hf"><span>Cómo presento la propuesta (placebo)</span><textarea rows="2" data-k="h8" data-l="Cómo presento la propuesta (placebo)"></textarea></label><label class="hf"><span>Qué doy antes de pedir (reciprocidad)</span><textarea rows="2" data-k="h9" data-l="Qué doy antes de pedir (reciprocidad)"></textarea></label><label class="hf"><span>Compromisos pequeños que busco</span><textarea rows="2" data-k="h10" data-l="Compromisos pequeños que busco"></textarea></label><label class="hf"><span>Prueba social y autoridad que llevo</span><textarea rows="2" data-k="h11" data-l="Prueba social y autoridad que llevo"></textarea></label><label class="hf"><span>Escasez real que puedo mostrar</span><textarea rows="2" data-k="h12" data-l="Escasez real que puedo mostrar"></textarea></label><label class="hf"><span>Nuestro «nosotros» (unidad)</span><textarea rows="2" data-k="h13" data-l="Nuestro «nosotros» (unidad)"></textarea></label></div>
+<div class="acts"><button class="dl" type="button" id="copyhoja">Copiar mi hoja</button><button class="lnk" type="button" id="clrhoja">Borrar</button></div>
+</div></section>
+<section class="sec" id="diagnostico"><div class="wrap"><div class="label">Herramienta</div><h2>Autodiagnóstico</h2><p class="intro">Marca lo que hiciste en tu última negociación importante.</p>
+<div class="score"><b id="pts">0</b><span>/ 12</span><p id="verd">Marca lo que aplica para ver tu nivel.</p></div>
+<div class="prog"><i id="dprog"></i></div>
+<div class="ruta"><label class="ck"><input type="checkbox" data-k="d0"><span class="box"></span><span class="what">Llegué con datos y alternativas: mi realidad era la más fuerte.</span></label><label class="ck"><input type="checkbox" data-k="d1"><span class="box"></span><span class="what">No bajé mi propuesta antes de que la otra parte respondiera.</span></label><label class="ck"><input type="checkbox" data-k="d2"><span class="box"></span><span class="what">El reparto del valor quedó acordado antes de crearlo.</span></label><label class="ck"><input type="checkbox" data-k="d3"><span class="box"></span><span class="what">Puse yo el primer número.</span></label><label class="ck"><input type="checkbox" data-k="d4"><span class="box"></span><span class="what">Elegí yo contra qué se comparaba mi oferta.</span></label><label class="ck"><input type="checkbox" data-k="d5"><span class="box"></span><span class="what">Salí con documento y siguiente paso con fecha.</span></label><label class="ck"><input type="checkbox" data-k="d6"><span class="box"></span><span class="what">Cuidé cómo se presentó la propuesta.</span></label><label class="ck"><input type="checkbox" data-k="d7"><span class="box"></span><span class="what">Di algo de valor antes de pedir.</span></label><label class="ck"><input type="checkbox" data-k="d8"><span class="box"></span><span class="what">Conseguí compromisos pequeños antes del grande.</span></label><label class="ck"><input type="checkbox" data-k="d9"><span class="box"></span><span class="what">Mostré prueba social de su misma «manada».</span></label><label class="ck"><input type="checkbox" data-k="d10"><span class="box"></span><span class="what">Usé solo escasez real.</span></label><label class="ck"><input type="checkbox" data-k="d11"><span class="box"></span><span class="what">Construí un «nosotros» con la otra parte.</span></label></div>
+</div></section>
+<section class="sec" id="charla"><div class="wrap"><div class="label">De la charla</div><h2>Quién es Andrés Bilbao</h2>
+<div class="roles"><div><b>Co-founder de Rappi, 30X y KillB</b><span>Desarrollador de ecosistema</span></div><div><b>Ángel inversionista (B2)</b><span>+25 compañías incubadas</span></div><div><b>70 inversiones ángel</b><span>Inversión y partnerships</span></div></div>
+<h3 class="mt">Dónde ha negociado</h3>
+<div class="platg"><div><span>Rappi</span><b>Negociación sencilla con docenas de restaurantes; compleja con supermercados y marcas; la adquisición de tres compañías.</b></div><div><span>Ángel · B2</span><b>Negociación de inversión y partnerships; 70 inversiones ángel.</b></div><div><span>30X</span><b>6 business partners negociados; reclutamiento del VP de AI y de un equipo AI-first de 12 personas.</b></div></div>
 <p class="refs">Para profundizar: Robert Cialdini, <em>Influence</em> y <em>Pre-Suasion</em> · Chris Voss, <em>Never Split the Difference</em> · Stuart Diamond, <em>Getting More</em> · Deepak Malhotra, <em>Negotiating the Impossible</em>.</p>
-<p class="end">Si quieres profundizar, 30X tiene programas de ventas (AI Sales, Sales Machine): <a href="https://30x.com">30x.com</a></p>
-</div>
-<script>
-try{var n=new URLSearchParams(location.search).get('n');if(n){n=n.trim().slice(0,40);var h=document.getElementById('hola');h.textContent='¡Hola, '+n+'!';h.style.display='block';}}catch(e){}
-</script>
-</body>
-</html>
+</div></section>
+<footer class="end"><div class="wrap"><p>Esto es lo que entrenamos en 30X con equipos comerciales: <a href="https://30x.com">30x.com</a></p></div></footer>
+</main><script>(function(){
+var LS={g:function(k){try{return localStorage.getItem('bb_'+k)}catch(e){return null}},s:function(k,v){try{localStorage.setItem('bb_'+k,v)}catch(e){}}};
+try{var n=new URLSearchParams(location.search).get('n');if(n){n=n.trim().slice(0,40);var h=document.getElementById('hola');h.textContent='Hola, '+n+'. Esta guía es tuya.';h.style.display='block';}}catch(e){}
+function copy(t,btn,lbl){function ok(){btn.classList.add('ok');btn.textContent='¡Copiado!';setTimeout(function(){btn.classList.remove('ok');btn.textContent=lbl},1600)}
+ if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t).then(ok,fb)}else fb();
+ function fb(){var a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy');ok()}catch(e){}document.body.removeChild(a)}}
+document.querySelectorAll('button.copy').forEach(function(b){b.addEventListener('click',function(){copy(b.closest('.prompt').querySelector('pre').textContent,b,'Copiar')})});
+document.querySelectorAll('textarea[data-k]').forEach(function(t){var v=LS.g(t.dataset.k);if(v)t.value=v;t.addEventListener('input',function(){LS.s(t.dataset.k,t.value)})});
+document.getElementById('copyhoja').addEventListener('click',function(){var out='HOJA DE PREPARACIÓN · Negocia como world class (Andrés Bilbao)\n\n';
+ document.querySelectorAll('.hf textarea').forEach(function(t){out+=t.dataset.l+':\n'+(t.value.trim()||'—')+'\n\n'});copy(out.trim(),this,'Copiar mi hoja')});
+document.getElementById('clrhoja').addEventListener('click',function(){document.querySelectorAll('.hf textarea').forEach(function(t){t.value='';LS.s(t.dataset.k,'')})});
+var cks=[].slice.call(document.querySelectorAll('.ck input'));
+function score(){var p=cks.filter(function(c){return c.checked}).length,tot=cks.length;document.getElementById('pts').textContent=p;document.getElementById('dprog').style.width=(p/tot*100)+'%';
+ document.getElementById('verd').textContent=p===0?'Marca lo que aplica para ver tu nivel.':p<=4?'Estás negociando por instinto. Empieza por la hoja de preparación.':p<=8?'Buena base. Trabaja anclar y no negociar contigo mismo.':'Nivel avanzado. Afina placebo y unidad para los acuerdos grandes.'}
+cks.forEach(function(c){c.checked=LS.g(c.dataset.k)==='1';c.addEventListener('change',function(){LS.s(c.dataset.k,c.checked?'1':'0');score()})});score();
+var caps=[].slice.call(document.querySelectorAll('.cap')),read={};caps.forEach(function(c){if(LS.g('r_'+c.id)==='1')read[c.id]=1});
+function rp(){var k=Object.keys(read).length;document.getElementById('rprog').style.width=(k/caps.length*100)+'%';document.getElementById('rprogt').textContent='Llevas '+k+' de '+caps.length+' principios leídos';
+ Object.keys(read).forEach(function(id){var a=document.querySelector('.c[href="#'+id+'"]');if(a)a.classList.add('read')})}
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){read[e.target.id]=1;LS.s('r_'+e.target.id,'1');rp()}})},{rootMargin:'-45% 0px -45% 0px'});caps.forEach(function(c){io.observe(c)})}
+rp();
+})();
+</script></body></html>
