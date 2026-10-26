@@ -42,7 +42,8 @@ fbq('init','871397058641901');fbq('track','PageView');
   function go(link,nombre){
     if(done)return;done=true;btn.href=link;msg.textContent='Te llevamos al grupo con cupo disponible.';
     try{fbq('trackCustom','Comunidad',{utm_content:utm,src:src,grupo:nombre||''})}catch(e){}
-    setTimeout(function(){location.replace(link)},450);
+    // espera a que cargue el pixel (máx. 1,5 s) para que el evento salga antes de irse
+    var t0=Date.now();(function esperar(){if((window.fbq&&window.fbq.callMethod)||Date.now()-t0>1500){setTimeout(function(){location.replace(link)},350)}else{setTimeout(esperar,100)}})();
   }
   function elegir(d){
     var t=(d&&d.tope)||TOPE,g=(d&&d.grupos)||[];
