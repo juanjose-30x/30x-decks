@@ -1,52 +1,52 @@
 {
- "actualizado": "2026-10-28T08:00:07-05:00",
+ "actualizado": "2026-10-29T08:00:09-05:00",
  "fuente": "bridge local de WhatsApp (conteo de participantes)",
  "tope": 1000,
  "grupos": [
   {
    "nombre": "Sales | Free Community | 30X",
    "link": "https://chat.whatsapp.com/BnwkKf18J0QIGoEuzuOxUc",
-   "miembros": 262
+   "miembros": 261
   },
   {
    "nombre": "30X AI Sales Community 3.0",
    "link": "https://chat.whatsapp.com/FxsW0qZNBFeA52ql197BGf",
-   "miembros": 515
+   "miembros": 512
   },
   {
    "nombre": "30X AI Sales Community 8.0",
    "link": "https://chat.whatsapp.com/G1Y7rNTqL3wIGS7ATz2sOJ",
-   "miembros": 567
+   "miembros": 564
   },
   {
    "nombre": "30X AI Sales Community 5.0",
    "link": "https://chat.whatsapp.com/BobXwOBCHDI3HVdvpxjyVU",
-   "miembros": 599
+   "miembros": 590
   },
   {
    "nombre": "30X AI Sales Community 2.0",
    "link": "https://chat.whatsapp.com/Ck33tiupjsQJhoGJv2ngYN",
-   "miembros": 605
+   "miembros": 594
   },
   {
    "nombre": "30X AI Sales Community 7.0",
    "link": "https://chat.whatsapp.com/EzLqaJyEstWC6duAHzr00g",
-   "miembros": 605
+   "miembros": 601
   },
   {
    "nombre": "30X AI Sales Community 4.0",
    "link": "https://chat.whatsapp.com/HWqGP2eJJrM9T2NjpuO7UX",
-   "miembros": 640
+   "miembros": 641
   },
   {
    "nombre": "30X AI Sales Community 6.0",
    "link": "https://chat.whatsapp.com/GdbY9qpv8BhBGfDZ3n025A",
-   "miembros": 749
+   "miembros": 743
   },
   {
    "nombre": "30X AI Sales Community 1.0",
    "link": "https://chat.whatsapp.com/GdpZ4a51EsGG0QhfTsnWdU",
-   "miembros": 893
+   "miembros": 881
   }
  ]
 }
