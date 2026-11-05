@@ -208,6 +208,6 @@ function boot(){if(document.getElementById('gc'))return;var d=mount();if(!d){if(
  fonts();css();var root=n('div',{id:'gc'});root.innerHTML=BODY;d.parentNode.replaceChild(root,d);
  var ok=false;try{ok=localStorage.getItem(KEY)==='1'}catch(e){}
  if(ok)unlock(false);else form(document.getElementById('gform'));
- guide();if(_okp){try{if('scrollRestoration' in history)history.scrollRestoration='manual';}catch(e){}window.scrollTo(0,0);emmaBar();}}
+ guide();if(_okp&&!(_sp&&_sp.get('emma')==='0')){try{if('scrollRestoration' in history)history.scrollRestoration='manual';}catch(e){}window.scrollTo(0,0);emmaBar();}}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
 })();
